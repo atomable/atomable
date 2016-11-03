@@ -9,7 +9,7 @@ const publish = require(__dirname + '/commands/publish');
 
 
 console.log("       __                 __   __   ");
-console.log(" ___ _/ /____  __ _ ___ _/ /  / /___ ");
+console.log(" ___ _/ /____  __ _ ___ _/ /  / /__ ");
 console.log("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)");
 console.log("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ ");
 console.log("  Severless Microservice Framework");
