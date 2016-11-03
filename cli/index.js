@@ -4,12 +4,17 @@ const program = require('commander');
 
 // Load local package
 const pkg = require('load-pkg');
-const serve = require(__dirname + '/commands/serve');
+const generate = require(__dirname + '/commands/generate');
 const publish = require(__dirname + '/commands/publish');
-const init = require(__dirname + '/commands/init/init');
-const generateEndpoint = require(__dirname + '/commands/generate/generateEndpoint');
-const generateParameter = require(__dirname + '/commands/generate/generateParameter');
-const wizard = require(__dirname + '/commands/generate/wizard');
+
+
+console.log("       __                 __   __   ");
+console.log(" ___ _/ /____  __ _ ___ _/ /  / /___ ");
+console.log("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)");
+console.log("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ ");
+console.log("  Severless Microservice Framework");
+console.log("  atomable.io, v1.0.0");
+console.log("                                    ");
 
 program
   .version(pkg.version)
@@ -17,16 +22,12 @@ program
 
 program.name = 'atomable';
 
-// generate
+// generate command
 program
-  .command('generate')
+  .command('generate <name>')
   .alias('g')
-  .option('-m, --name <name>')
-  .option('-p, --url-path <urlPath>')
-  .option('-m --http-method <httpMethod>')
-  .option('-s --summary <summary>')
-  .action(options =>
-    generate(options.name, options.urlPath, options.httpMethod, options.summary));
+  .action(name =>
+    generate(name));
 
 // publish
 program

@@ -1,0 +1,8 @@
+microservice: beretta
+  handler: beretta.main
+  https:
+    path: beretta
+    method: get
+    parameters:
+    - in: query
+      name: firstName
