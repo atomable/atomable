@@ -8,7 +8,7 @@ module.exports = (sourceDir, outDir) => {
   const babel_loader = path.join(__dirname, '..', '..', '..', '..', 'node_modules/babel-loader');
 
   return {
-    entry: [`${sourceDir}/node_modules/babel-polyfill/lib/index.js` , `${sourceDir}/handler.js`],
+    entry: [`${sourceDir}/handler.js`],
     output: {
       path: outDir,
       filename: 'handler.js',
@@ -17,7 +17,7 @@ module.exports = (sourceDir, outDir) => {
     target: 'node',
     module: {
       preLoaders: [
-         { test: /^.+\.(map|week-map)$/, loader: eslint_loader, exclude: /node_modules/ },
+        { test: /^.+\.(map|week-map)$/, loader: eslint_loader, exclude: /node_modules/ },
         { test: /^.+\.(map|week-map)$/, loader: source_map_loader, exclude: /node_modules/ }
       ],
       loaders: [{
@@ -28,12 +28,21 @@ module.exports = (sourceDir, outDir) => {
           presets: [
             'latest',
             'stage-0'
+          ],
+          plugins: [
+            ['transform-runtime', {
+              helpers: false,
+              polyfill: false,
+              regenerator: true
+            }]
           ]
         }
       }]
     },
     plugins: [
-      new webpack.IgnorePlugin(/^.+\.(map|week-map)$/)
+      new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.DedupePlugin()
     ],
     devtool: 'source-map'
   };

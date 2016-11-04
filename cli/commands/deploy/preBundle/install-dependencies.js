@@ -5,7 +5,7 @@ const exec = require('child_process').exec;
  */
 module.exports = (tmp) => {
   return new Promise((resolve, reject) => {
-    exec('yarn add --dev babel-preset-latest babel-preset-stage-0 babel-polyfill https://github.com/atomable/runtime', {
+    exec('yarn add --dev babel-preset-latest babel-preset-stage-0 babel-runtime babel-plugin-transform-runtime https://github.com/atomable/runtime', {
       cwd: tmp
     }, (error, stdout, stderr) => {
       if (error) {
