@@ -1,5 +1,3 @@
-const exec = require('child_process').exec;
-const fs = require('fs');
 const path = require('path');
 const config = require('./config');
 
@@ -8,12 +6,12 @@ const webpack = require(path.join(__dirname, '..', '..', '..', '..', 'node_modul
 /**
  * () compiles files
  */
-module.exports = (log, source, destination) => {
+module.exports = (log, source, destination, minify) => {
   log.dim(`Webpack...`);
 
   return new Promise((resolve, reject) => {
     const webpackConfigPath = `${source}/webpack-config.js`;
-    const webpackConfig = config(source, destination);
+    const webpackConfig = config(source, destination, minify);
 
     webpack(webpackConfig, (err, stats) => {
       if (stats.hasWarnings()) {

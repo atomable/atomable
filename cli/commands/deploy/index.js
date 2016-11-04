@@ -6,7 +6,7 @@ const uuid = require('node-uuid');
 /**
  * () deploys the project to the stage
  */
-module.exports = (log, stage) => {
+module.exports = (log, stage, region, minify) => {
   log.dim(`Deploying ${stage}...`);
 
   const source = `${process.cwd()}/`;
@@ -15,8 +15,8 @@ module.exports = (log, stage) => {
   const bundle = `${destination}/bundle/`;
 
   preBundle(log, stage, source, tmp)
-    .then(() => webpack(log, tmp, bundle))
-    .then(() => serverlessDeploy(log, stage, tmp, bundle))
+    .then(() => webpack(log, tmp, bundle, minify))
+    .then(() => serverlessDeploy(log, stage, tmp, bundle, region))
     .then(() =>
       log.green(`Successfully deployed.`))
     .catch(err => {

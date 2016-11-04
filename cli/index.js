@@ -32,8 +32,10 @@ program
   .command('deploy')
   .alias('d')
   .option('-s, --stage [stage]', 'stage to use for config, default [dev]', 'dev')
+  .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
+  .option('--skip-minify', 'skip minifying code, default [true]', true)
   .action(options =>
-    deploy(log, options.stage));
+    deploy(log, options.stage, options.region, options.minify));
 
 // clear
 program

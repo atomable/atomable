@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
 const uuid = require('node-uuid');
 const yaml = require('js-yaml');
+const chalk = require('chalk');
 
 const Maybe = require('liftjs').Maybe;
 
@@ -12,8 +13,7 @@ const name = require('./project-name');
 /**
  * () deploys the project to the stage
  */
-module.exports = (log, stage, tmp, bundle) => {
-  log.dim(`Deploying ${stage}...`);
+module.exports = (log, stage, tmp, bundle, region) => {
   return new Promise((resolve, reject) => {
     walker(tmp)
       .then(files => {
@@ -22,8 +22,8 @@ module.exports = (log, stage, tmp, bundle) => {
           provider: {
             name: 'aws',
             runtime: 'nodejs4.3',
-            stage: stage || 'dev',
-            region: 'us-east-1',
+            stage: stage,
+            region: region,
             cfLogs: true
           },
           functions: files
@@ -47,15 +47,13 @@ module.exports = (log, stage, tmp, bundle) => {
         };
         fs.writeFileSync(bundle + `/serverless.yml`, yaml.dump(serverlessConfig));
       }).then(() => {
-        exec('node ' + path.join(__dirname, '..', '..', '..', '..', 'node_modules/serverless/bin/serverless deploy'), {
-          cwd: bundle
-        }, (error, sderror, sdout) => {
-          console.log(error, sderror, sdout);
-          if (error) {
-            reject(error + sderror);
-          }
-          resolve(sdout);
-        });
+        const serverless =
+          spawn('node',
+            [path.join(__dirname, '..', '..', '..', '..', 'node_modules/serverless/bin/serverless'), 'deploy'],
+            { cwd: bundle });
+        serverless.stdout.on('data', (data) => console.log(chalk.yellow(data)));
+        serverless.stderr.on('data', (data) => reject(data));
+        serverless.on('exit', (code) => resolve());
       });
   });
 };
