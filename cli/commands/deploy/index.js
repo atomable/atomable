@@ -1,8 +1,6 @@
-'use strict';
-
-const preBundle = require('./preBundle/index');
-const webpack = require('./webpack/index');
-const serverlessDeploy = require('./serverless-deploy');
+const preBundle = require('./preBundle');
+const webpack = require('./webpack');
+const serverlessDeploy = require('./serverless');
 const uuid = require('node-uuid');
 
 /**
@@ -18,7 +16,7 @@ module.exports = (log, stage) => {
 
   preBundle(log, stage, source, tmp)
     .then(() => webpack(log, tmp, bundle))
-    .then(serverlessDeploy)
+    .then(() => serverlessDeploy(log, stage, tmp, bundle))
     .then(() =>
       log.green(`Successfully deployed.`))
     .catch(err => {

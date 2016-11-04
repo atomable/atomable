@@ -1,18 +1,19 @@
 const program = require('commander');
+const chalk = require('chalk');
 
 const log = require('./log');
 const generate = require(__dirname + '/commands/generate');
 const deploy = require(__dirname + '/commands/deploy');
 const clear = require(__dirname + '/commands/clear');
 
-console.log("                                    ");
-console.log("       __                 __   __   ");
-console.log(" ___ _/ /____  __ _ ___ _/ /  / /__ ");
-console.log("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)");
-console.log("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ ");
-console.log("  Severless Microservice Framework");
-console.log("  atomable.io, v1.0.0-beta");
-console.log("                                    ");
+console.log(chalk.blue("                                    "));
+console.log(chalk.blue("       __                 __   __   "));
+console.log(chalk.blue(" ___ _/ /____  __ _ ___ _/ /  / /__ "));
+console.log(chalk.blue("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)"));
+console.log(chalk.blue("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ "));
+console.log(chalk.blue("  Severless Microservice Framework"));
+console.log(chalk.blue("  atomable.io, v1.0.0-beta"));
+console.log(chalk.blue("                                    "));
 
 program
   .usage('<command> [options]');

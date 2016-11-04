@@ -29,6 +29,7 @@
     "liftjs": "^1.1.4",
     "ncp": "^2.0.0",
     "node-uuid": "^1.4.7",
+    "serverless": "^1.1.0",
     "source-map-loader": "^0.1.5",
     "webpack": "^1.13.3",
     "webpack-async-await": "^1.1.0"
