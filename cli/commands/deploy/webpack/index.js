@@ -5,14 +5,11 @@ const config = require('./config');
 
 const webpack = require(path.join(__dirname, '..', '..', '..', '..', 'node_modules/webpack'));
 
-const log = (message) =>
-  console.log(`atomable: ${message}`);
-
 /**
  * () compiles files
  */
-module.exports = (source, destination) => {
-  log(`Webpack...`);
+module.exports = (log, source, destination) => {
+  log.dim(`Webpack...`);
 
   return new Promise((resolve, reject) => {
     const webpackConfigPath = `${source}/webpack-config.js`;
@@ -20,12 +17,12 @@ module.exports = (source, destination) => {
 
     webpack(webpackConfig, (err, stats) => {
       if (stats.hasWarnings()) {
-        log(stats.toJson().warnings)
+        log.yellow(stats.toJson().warnings)
       }
       if (stats.hasErrors()) {
         reject('\nWebpack failed:\n' + stats.toJson().errors)
       }
-      log('Webpack done.');
+      log.dim('Webpack done.');
       resolve()
     });
   });

@@ -14,17 +14,20 @@
   "dependencies": {
     "atomable-sdk": "^1.0.1",
     "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2016": "^6.16.0",
-    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "chalk": "^1.1.3",
     "commander": "^2.6.0",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
     "js-yaml": "^3.6.1",
     "liftjs": "^1.1.4",
     "ncp": "^2.0.0",
     "node-uuid": "^1.4.7",
+    "source-map-loader": "^0.1.5",
     "webpack": "^1.13.3",
     "webpack-async-await": "^1.1.0"
   }

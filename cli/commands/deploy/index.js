@@ -1,33 +1,27 @@
 'use strict';
 
-const clear = require('./clear');
-const pre = require('./preBundle/index');
+const preBundle = require('./preBundle/index');
 const webpack = require('./webpack/index');
 const serverlessDeploy = require('./serverless-deploy');
 const uuid = require('node-uuid');
 
-const log = (message) =>
-  console.log(`atomable: ${message}`);
-
 /**
  * () deploys the project to the stage
  */
-module.exports = (stage) => {
-  log(`Deploying ${stage}...`);
+module.exports = (log, stage) => {
+  log.dim(`Deploying ${stage}...`);
 
   const source = `${process.cwd()}/`;
   const destination = `${source}/.atomable/deploy-${uuid.v1()}/`;
   const tmp = `${destination}/tmp/`;
   const bundle = `${destination}/bundle/`;
 
-  //  clear(destination);
-
-  pre(stage, source, destination)
-    .then(() => webpack(tmp, bundle))
+  preBundle(log, stage, source, tmp)
+    .then(() => webpack(log, tmp, bundle))
     .then(serverlessDeploy)
     .then(() =>
-      log(`Successfully deployed.`))
-  // .catch(err => {
-  //   log('There was a problem deploying the package.', err);
-  // });
+      log.green(`Successfully deployed.`))
+    .catch(err => {
+      log.red('There was a problem deploying the package.\n\n' + err);
+    });
 };

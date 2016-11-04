@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 
 const writeFile = (file, contents) => {
@@ -19,8 +17,8 @@ const mkdir = (dir) => {
 /**
  * Generate Command.
  */
-module.exports = (name) => {
-  console.log(`atomable: Generating ${name} microservice...`);
+module.exports = (log, name) => {
+  log.dim(`Generating ${name} microservice...`);
 
   const destination = process.cwd() + `/${name}`;
   mkdir(destination);
@@ -34,5 +32,5 @@ module.exports = (name) => {
   writeFile(`${destination}/env/conf-dev.yml`, readFile(`${__dirname}/template/env/conf.yml`));
   writeFile(`${destination}/env/conf-prod.yml`, readFile(`${__dirname}/template/env/conf.yml`).replace(/dev/g, `prod`));
 
-  console.log(`atomable: Successfully generated ${name} microservice in "${destination}".`);
+  log.dim(`Successfully generated ${name} microservice in "${destination}".`);
 };

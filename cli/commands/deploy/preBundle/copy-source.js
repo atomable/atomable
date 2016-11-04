@@ -10,9 +10,6 @@ const mkdirParentSync = (dir, mode) => {
   fs.mkdirSync(dir, mode);
 };
 
-const log = (message) =>
-  console.log(`atomable: ${message}`);
-
 /**
  * () copies source files recursively to destination omiting js and es
  */

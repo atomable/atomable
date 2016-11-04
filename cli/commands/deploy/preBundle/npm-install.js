@@ -1,9 +1,6 @@
 const fs = require('fs');
 const exec = require('child_process').exec;
 
-const log = (message) =>
-  console.log(`atomable: ${message}`);
-
 /**
  * () copies source files recursively to destination omiting js and es
  */

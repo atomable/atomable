@@ -1,7 +1,9 @@
 const program = require('commander');
 
-const generate = require(__dirname + '/commands/generate/generate');
-const deploy = require(__dirname + '/commands/deploy/deploy');
+const log = require('./log');
+const generate = require(__dirname + '/commands/generate');
+const deploy = require(__dirname + '/commands/deploy');
+const clear = require(__dirname + '/commands/clear');
 
 console.log("                                    ");
 console.log("       __                 __   __   ");
@@ -17,20 +19,25 @@ program
 
 program.name = 'atomable';
 
-// generate command
+// generate
 program
   .command('generate <name>')
   .alias('g')
   .action(name =>
-    generate(name));
+    generate(log, name));
 
-// publish
+// deploy
 program
   .command('deploy')
   .alias('d')
   .option('-s, --stage [stage]', 'stage to use for config, default [dev]', 'dev')
   .action(options =>
-    deploy(options.stage));
+    deploy(log, options.stage));
+
+// clear
+program
+  .command('clear')
+  .action(() => clear(log));
 
 program.parse(process.argv);
 
