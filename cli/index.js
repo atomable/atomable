@@ -1,23 +1,18 @@
-'use strict';
-
 const program = require('commander');
 
-// Load local package
-const pkg = require('load-pkg');
-const generate = require(__dirname + '/commands/generate');
-const publish = require(__dirname + '/commands/publish');
+const generate = require(__dirname + '/commands/generate/generate');
+const deploy = require(__dirname + '/commands/deploy/deploy');
 
-
+console.log("                                    ");
 console.log("       __                 __   __   ");
 console.log(" ___ _/ /____  __ _ ___ _/ /  / /__ ");
 console.log("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)");
 console.log("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ ");
 console.log("  Severless Microservice Framework");
-console.log("  atomable.io, v1.0.0");
+console.log("  atomable.io, v1.0.0-beta");
 console.log("                                    ");
 
 program
-  .version(pkg.version)
   .usage('<command> [options]');
 
 program.name = 'atomable';
@@ -31,11 +26,11 @@ program
 
 // publish
 program
-  .command('publish')
-  .alias('p')
-  .option('-e, --env [env]', 'env to use for config, default [dev]', 'dev')
+  .command('deploy')
+  .alias('d')
+  .option('-s, --stage [stage]', 'stage to use for config, default [dev]', 'dev')
   .action(options =>
-    publish(options.env));
+    deploy(options.stage));
 
 program.parse(process.argv);
 
