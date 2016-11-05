@@ -1,6 +1,6 @@
 
 import assert from 'assert';
-import beretta from './beretta';
+import { beretta } from './beretta';
 
 describe('A beretta', () => {
   it(`should return hello world`, async () => {

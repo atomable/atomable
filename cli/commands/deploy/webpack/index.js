@@ -15,7 +15,6 @@ module.exports = (log, source, destination, minify) => {
 
     webpack(webpackConfig, (err, stats) => {
       if (stats.hasWarnings()) {
-        console.log(typeof stats.toJson().warnings);
         log.yellow(stats.toJson().warnings.toString().replace(/\.\/\.atomable\/[^\/]+\/tmp\//g, ''))
       }
       if (stats.hasErrors()) {
