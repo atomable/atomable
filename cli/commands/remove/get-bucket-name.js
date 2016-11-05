@@ -1,27 +1,27 @@
 const aws = require('aws-sdk');
+const Maybe = require('liftjs').Maybe;
 
-module.exports = (log, bucketName) => {
-
+module.exports = (log, stackName, region) => {
+  const low = stackName.toLowerCase();
   return new Promise((resolve, reject) => {
-
-
-    var s3 = new AWS.S3();
-
-    const list = [];
-    var params = {
-      Bucket: bucketName
-    };
-
-    s3.listObjectsV2(params, function (err, data) {
-      if (err) console.log(err, err.stack);
-
-
-
-
-
-
+    var cf = new aws.CloudFormation({ region: region });
+    cf.listStacks({}, function (error, data) {
+      if (error) {
+        reject(error);
+      }
+      Maybe(data.StackSummaries.filter(s => s.StackName.toLowerCase() === low).map(s => s.StackName).pop())
+        .map(stackName =>
+          cf.listStackResources({ StackName: stackName },
+            (error, data) => {
+              resolve(
+                Maybe(data)
+                  .map(d => d.StackResourceSummaries)
+                  .map(srs =>
+                    srs.filter(r => r.ResourceType === 'AWS::S3::Bucket')
+                      .map(r => r.PhysicalResourceId)
+                      .pop()
+                  ).get())
+            }));
     });
-
-      resolve();
   });
 };

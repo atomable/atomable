@@ -1,12 +1,12 @@
 const getBucketName = require('./get-bucket-name');
 const emptyBucket = require('./empty-bucket');
-const deletestack = require('./delete-stack');
+const deleteStack = require('./delete-stack');
 
 module.exports = (log, stackName, region) => {
-    log.dim(`Deleting stack ${stackName}`);
+  log.dim(`Deleting ${stackName} stack...`);
 
-    getBucketName(log, stackName, region)
-        .then((bucketName) => emptyBucket(log, bucketName, region))
-        .then(() => deleteStack(log, stackName, region))
-        .catch(log.red);
+  getBucketName(log, stackName, region)
+    .then(bucketName => emptyBucket(log, bucketName, region))
+    .then(_ => deleteStack(log, stackName, region))
+    .catch(log.red);
 };

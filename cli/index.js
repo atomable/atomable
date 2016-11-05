@@ -6,6 +6,7 @@ const generate = require(__dirname + '/commands/generate');
 const deploy = require(__dirname + '/commands/deploy');
 const clear = require(__dirname + '/commands/clear');
 const remove = require(__dirname + '/commands/remove');
+const list = require(__dirname + '/commands/list');
 
 console.log(chalk.blue("                                    "));
 console.log(chalk.blue("       __                 __   __   "));
@@ -49,6 +50,12 @@ program
   .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
   .alias('r')
   .action((stackName, options) => remove(log('atomable'), stackName, options.region));
+
+// remove
+program
+  .command('list')
+  .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
+  .action(options => list(log('atomable'), options.region));
 
 program.parse(process.argv);
 

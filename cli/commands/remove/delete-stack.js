@@ -1,27 +1,14 @@
 const aws = require('aws-sdk');
 
-module.exports = (log, bucketName) => {
-
+module.exports = (log, stackName, region) => {
   return new Promise((resolve, reject) => {
-
-
-    var s3 = new AWS.S3();
-
-    const list = [];
-    var params = {
-      Bucket: bucketName
-    };
-
-    s3.listObjectsV2(params, function (err, data) {
-      if (err) console.log(err, err.stack);
-
-
-
-
-
-
-    });
-
-      resolve();
+    new aws.CloudFormation({ region: region })
+      .deleteStack({ StackName: stackName }, (err, data) => {
+        if (err) {
+          reject('There was an issue trying to delete your stack, please try again or delete it manually.\n' + err);
+        }
+        log.green('Stack deleted.');
+        resolve();
+      });
   });
 };
