@@ -20,7 +20,6 @@ module.exports = (log, source, destination, minify) => {
       if (stats.hasErrors()) {
         reject('\nWebpack failed:\n' + stats.toJson().errors.toString().replace(/\.\/\.atomable\/[^\/]+\/tmp\//g, ''))
       }
-      log.dim('Webpack done.');
       resolve()
     });
   });

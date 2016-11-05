@@ -9,7 +9,7 @@ module.exports = (tmp) => {
       cwd: tmp
     }, (error, stdout, stderr) => {
       if (error) {
-        reject(err);
+        reject(error);
       }
       resolve();
     });
