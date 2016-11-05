@@ -5,6 +5,7 @@ const log = require('./log');
 const generate = require(__dirname + '/commands/generate');
 const deploy = require(__dirname + '/commands/deploy');
 const clear = require(__dirname + '/commands/clear');
+const remove = require(__dirname + '/commands/remove');
 
 console.log(chalk.blue("                                    "));
 console.log(chalk.blue("       __                 __   __   "));
@@ -25,7 +26,7 @@ program
   .command('generate <name>')
   .alias('g')
   .action(name =>
-    generate(log, name));
+    generate(log('atomable'), name));
 
 // deploy
 program
@@ -35,12 +36,19 @@ program
   .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
   .option('--skip-minify', 'skip minifying code, default [true]', true)
   .action(options =>
-    deploy(log, options.stage, options.region, options.minify));
+    deploy(log('atomable'), options.stage, options.region, options.minify));
 
 // clear
 program
   .command('clear')
-  .action(() => clear(log));
+  .action(() => clear(log('atomable')));
+
+// remove
+program
+  .command('remove <stackName>')
+  .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
+  .alias('r')
+  .action((stackName, options) => remove(log('atomable'), stackName, options.region));
 
 program.parse(process.argv);
 

@@ -1,22 +1,24 @@
 const chalk = require('chalk');
 
-const atomablize = (message) =>
-  `atomable: ${message}`;
+const atomablize =
+  (prefix) =>
+    (message) =>
+      `${prefix}: ${message}`;
 
-module.exports.cyan = (...args) =>
-  console.log(chalk.cyan(atomablize(args)));
+const log =
+  (message) =>
+    (chalk) =>
+      console.log(chalk(message));
 
-module.exports.red = (...args) =>
-  console.log(chalk.red(atomablize(args)));
+module.exports =
+  (prefix) => {
+    return {
+      cyan: (message) => log(atomablize(prefix)(message))(chalk.cyan),
+      red: (message) => log(atomablize(prefix)(message))(chalk.red),
+      green: (message) => log(atomablize(prefix)(message))(chalk.green),
+      dim: (message) => log(atomablize(prefix)(message))(chalk.dim),
+      yellow: (message) => log(atomablize(prefix)(message))(chalk.yellow),
+      blue: (message) => log(atomablize(prefix)(message))(chalk.blue),
+    };
+  };
 
-module.exports.green = (...args) =>
-  console.log(chalk.green(atomablize(args)));
-
-module.exports.dim = (...args) =>
-  console.log(chalk.dim(atomablize(args)));
-
-module.exports.yellow = (...args) =>
-  console.log(chalk.yellow(atomablize(args)));
-
-module.exports.blue = (...args) =>
-  console.log(chalk.blue(atomablize(args)));
