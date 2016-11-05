@@ -5,7 +5,7 @@ module.exports = (log, region) => {
   var cf = new aws.CloudFormation({ region: region });
   cf.listStacks({}, function (error, data) {
     if (error) {
-      reject(error);
+      log.red(error);
     }
     data && data.StackSummaries && data.StackSummaries
       .filter(s => s.StackStatus != 'DELETE_COMPLETE')

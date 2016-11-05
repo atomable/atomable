@@ -22,14 +22,14 @@ program
 
 program.name = 'atomable';
 
-// generate
+// generates a new microservice
 program
   .command('generate <name>')
   .alias('g')
   .action(name =>
     generate(log('atomable'), name));
 
-// deploy
+// deploy to aws your microservices
 program
   .command('deploy')
   .alias('d')
@@ -39,19 +39,19 @@ program
   .action(options =>
     deploy(log('atomable'), options.stage, options.region, options.minify));
 
-// clear
+// cleans the atomable cache
 program
-  .command('clear')
+  .command('clean-cache')
   .action(() => clear(log('atomable')));
 
-// remove
+// deletes the stack and all of its resources
 program
   .command('remove <stackName>')
   .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
   .alias('r')
   .action((stackName, options) => remove(log('atomable'), stackName, options.region));
 
-// remove
+// list all the aws stacks ignored the DELETE_COMPLETE status
 program
   .command('list')
   .option('-r, --region [region]', 'aws region, default [us-east-1]', 'us-east-1')
