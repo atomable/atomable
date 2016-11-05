@@ -1,5 +1,4 @@
 const runtime = require('atomable-runtime');
-const r = require('./proton/proton');
 
 /** imports */
 

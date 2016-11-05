@@ -51,7 +51,9 @@ module.exports = (log, stage, tmp, bundle, region) => {
           spawn('node',
             [path.join(__dirname, '..', '..', '..', '..', 'node_modules/serverless/bin/serverless'), 'deploy'],
             { cwd: bundle });
-        serverless.stdout.on('data', (data) => console.log(chalk.yellow(data)));
+        serverless.stdout.on('data', (data) => !/^\.+/.test(data)
+          ? console.log(chalk.yellow(data))
+          : null);
         serverless.stderr.on('data', (data) => reject(data));
         serverless.on('exit', (code) => resolve());
       });
