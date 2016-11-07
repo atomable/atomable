@@ -1,4 +1,5 @@
----
+module.exports =
+  `---
 name: beretta
 
 handler: beretta.beretta
@@ -8,4 +9,4 @@ https:
   method: get
   parameters:
   - in: query
-    name: firstName
+    name: firstName`;

@@ -1,7 +1,7 @@
 const path = require('path');
 const config = require('./config');
 
-const webpack = require(path.join(__dirname, '..', '..', '..', '..', 'node_modules/webpack'));
+const webpack = require(path.join(__dirname, '..', '..', '..', 'node_modules/webpack'));
 
 /**
  * () compiles files
@@ -11,7 +11,7 @@ module.exports = (log, source, destination, minify) => {
 
   return new Promise((resolve, reject) => {
     const webpackConfigPath = `${source}/webpack-config.js`;
-    const webpackConfig = config(source, destination, minify);
+    const webpackConfig = config(webpack, source, destination, minify);
 
     webpack(webpackConfig, (err, stats) => {
       if (stats.hasWarnings()) {

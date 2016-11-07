@@ -1,18 +1,15 @@
 const path = require('path');
 
-const webpack = require(path.join(__dirname, '..', '..', '..', '..', 'node_modules/webpack'));
-
-module.exports = (sourceDir, outDir, minify) => {
-  const eslint_loader = path.join(__dirname, '..', '..', '..', '..', 'node_modules/eslint-loader');
-  const source_map_loader = path.join(__dirname, '..', '..', '..', '..', 'node_modules/source-map-loader');
-  const babel_loader = path.join(__dirname, '..', '..', '..', '..', 'node_modules/babel-loader');
+module.exports = (webpack, sourceDir, outDir, minify) => {
+  const eslint_loader = path.join(__dirname, '..', '..', '..', 'node_modules/eslint-loader');
+  const source_map_loader = path.join(__dirname, '..', '..', '..', 'node_modules/source-map-loader');
+  const babel_loader = path.join(__dirname, '..', '..', '..', 'node_modules/babel-loader');
 
   const plugins = [
     new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
     new webpack.optimize.DedupePlugin()
   ];
   if (minify) {
-    console.log('minifying', minify, typeof minify);
     plugins.push(new webpack.optimize.UglifyJsPlugin())
   }
 

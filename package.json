@@ -1,15 +1,21 @@
 {
   "name": "atomable",
-  "version": "1.0.3-beta",
+  "version": "1.0.0-beta.4",
   "description": "atomable cli package",
   "main": "index.js",
   "bin": {
-    "atomable": "bin/atomable"
+    "atomable": "bin/atomable",
+    "alt": "bin/atomable"
   },
+  "repository": "https://github.com/atomable/atomable.git",
+  "bugs": {
+    "url": "https://github.com/atomable/atomable/issues"
+  },
+  "trackingCode": "UA-82554700-2",
   "author": "atomable",
   "license": "MIT",
   "dependencies": {
-    "atomable-runtime": "1.0.5-beta",
+    "atomable-runtime": ">1.0.0-alpha",
     "aws-sdk": "^2.6.15",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.2",
@@ -20,9 +26,11 @@
     "babel-runtime": "6.18.0",
     "chalk": "1.1.3",
     "commander": "2.6.0",
+    "ember-cli": "^2.9.1",
     "eslint": "3.9.1",
     "eslint-loader": "1.6.1",
     "js-yaml": "3.6.1",
+    "leek": "^0.0.24",
     "liftjs": "^1.1.4",
     "ncp": "2.0.0",
     "node-uuid": "1.4.7",
@@ -32,5 +40,28 @@
   },
   "engines": {
     "node": ">=4.3.2"
-  }
+  },
+  "ember-addon": {
+    "paths": [
+      "./"
+    ],
+    "main": "./addon/index.js"
+  },
+  "keywords": [
+    "ember-addon",
+    "microservices",
+    "serverless",
+    "serverless microservices",
+    "serverless framework",
+    "serverless applications",
+    "serverless modules",
+    "api gateway",
+    "lambda",
+    "aws",
+    "aws lambda",
+    "amazon",
+    "amazon web services",
+    "atomable",
+    "atomable.io"
+  ]
 }

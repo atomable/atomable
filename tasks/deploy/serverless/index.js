@@ -49,10 +49,10 @@ module.exports = (log, stage, tmp, bundle, region) => {
       }).then(() => {
         const serverless =
           spawn('node',
-            [path.join(__dirname, '..', '..', '..', '..', 'node_modules/serverless/bin/serverless'), 'deploy'],
+            [path.join(__dirname, '..', '..', '..', 'node_modules/serverless/bin/serverless'), 'deploy'],
             { cwd: bundle });
         serverless.stdout.on('data', (data) => !/^\.+/.test(data)
-          ? console.log(chalk.yellow(data))
+          ? log.reset().yellow(data)
           : null);
         serverless.stderr.on('data', (data) => reject(data));
         serverless.on('exit', (code) => resolve());

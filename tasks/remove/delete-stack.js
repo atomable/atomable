@@ -7,7 +7,7 @@ module.exports = (log, stackName, region) => {
         if (err) {
           reject('There was an issue trying to delete your stack, please try again or delete it manually.\n' + err);
         }
-        log.green('Stack deleted.');
+        log.green('Stack deletion in progess.');
         resolve();
       });
   });
