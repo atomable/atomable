@@ -1,6 +1,6 @@
 {
   "name": "atomable",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "atomable cli package",
   "main": "index.js",
   "bin": {
@@ -28,6 +28,7 @@
     "ember-cli": "2.9.1",
     "eslint": "3.9.1",
     "eslint-loader": "1.6.1",
+    "exit": "^0.1.2",
     "js-yaml": "3.6.1",
     "leek": "0.0.24",
     "liftjs": "^1.1.4",
