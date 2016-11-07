@@ -20,12 +20,12 @@ const command = Command.extend({
     return new Promise((resolve, reject) => {
       var cf = new aws.CloudFormation({ region: commandOptions.region });
       cf.listStacks({}, function (error, data) {
-        if (error) {
+        if (error && !/Cannot read property 'Contents' of null/.test(error)) {
           return reject(error);
         }
         if (!(data && data.StackSummaries)) {
           log.dim('no stack found');
-          return reject();
+          return resolve();
         };
 
         log.dim(`CloudFormation stacks (${data.StackSummaries.filter(deletedFilter).length})`);
