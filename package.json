@@ -1,6 +1,6 @@
 {
   "name": "atomable",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "atomable cli package",
   "main": "index.js",
   "bin": {
@@ -33,6 +33,7 @@
     "liftjs": "^1.1.4",
     "ncp": "2.0.0",
     "node-uuid": "1.4.7",
+    "resolve": "^1.1.7",
     "serverless": "1.1.0",
     "source-map-loader": "0.1.5",
     "webpack": "1.13.3"
