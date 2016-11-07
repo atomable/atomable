@@ -7,7 +7,7 @@ const webpack = require(path.join(__dirname, '..', '..', '..', '..', 'node_modul
  * () compiles files
  */
 module.exports = (log, source, destination, minify) => {
-  log.dim(`Webpack...`);
+  log.dim(`Bundling...`);
 
   return new Promise((resolve, reject) => {
     const webpackConfigPath = `${source}/webpack-config.js`;

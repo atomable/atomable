@@ -2,13 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ncp = require('ncp');
 
-const mkdirParentSync = (dir, mode) => {
-  const parent = path.dirname(dir);
-  if (!fs.existsSync(parent)) {
-    mkdirParentSync(parent, mode);
-  }
-  fs.mkdirSync(dir, mode);
-};
+const mkdirParentSync = require('./mkdir-parent-sync');
 
 /**
  * () copies source files recursively to destination omiting js and es

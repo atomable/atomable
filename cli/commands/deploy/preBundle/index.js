@@ -1,7 +1,7 @@
 const copy = require('./copy-source');
-const babel = require('./install-dependencies');
-const npm = require('./npm-install');
-const buildhandler = require('./build-handler');
+const installDependecies = require('./install-dependencies');
+const npmInstall = require('./npm-install');
+const buildHandler = require('./build-handler');
 
 /**
  * () copies source files recursively to destination omiting js and es
@@ -9,8 +9,8 @@ const buildhandler = require('./build-handler');
 module.exports = (log, stage, source, tmp) => {
   return copy(source, tmp)
     .then(() =>
-      log.dim(`Installing dependencies...`))
-    .then(() => babel(tmp))
-    .then(() => npm(tmp))
-    .then(() => buildhandler(tmp))
+          log.dim(`Installing dependencies...`))
+    .then(() => npmInstall(tmp))
+    .then(() => installDependecies(tmp))
+    .then(() => buildHandler(tmp))
 };

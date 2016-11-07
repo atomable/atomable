@@ -7,7 +7,7 @@ const uuid = require('node-uuid');
  * () deploys the project to the stage
  */
 module.exports = (log, stage, region, minify) => {
-  log.dim(`Deploying ${stage}...`);
+  log.dim(`Packaging ${stage}...`);
 
   const source = `${process.cwd()}/`;
   const destination = `${source}/.atomable/deploy-${uuid.v1()}/`;
