@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const spawn = require('child_process').spawn;
 const uuid = require('node-uuid');
 const yaml = require('js-yaml');
 const chalk = require('chalk');
@@ -11,6 +10,8 @@ const Maybe = require('liftjs').Maybe;
 
 const walker = require('./walker');
 const name = require('./project-name');
+
+const serverless = require('serverless');
 
 /**
  * () deploys the project to the stage
@@ -48,16 +49,11 @@ module.exports = (log, stage, tmp, bundle, region) => {
             }).reduce((a, b) => Object.assign(a, b), {})
         };
         fs.writeFileSync(bundle + `/serverless.yml`, yaml.dump(serverlessConfig));
-      }).then(() => {
-        const serverless =
-          spawn('node',
-            [path.join(__dirname, '..', '..', '..', 'node_modules/serverless/bin/serverless'), 'deploy'],
-            { cwd: bundle });
-        serverless.stdout.on('data', (data) => !/^\.+/.test(data)
-          ? log.reset().yellow(data)
-          : null);
-        serverless.stderr.on('data', (data) => reject(data));
-        serverless.on('exit', (code) => resolve());
-      });
+      }).then(() =>
+        new Promise((resolve, reject) => {
+          serverless(bundle, { region, stage }, 'deploy', log.dim)
+            .then(resolve)
+            .catch(console.log);
+        }));
   });
 };
