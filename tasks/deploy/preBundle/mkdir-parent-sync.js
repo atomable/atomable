@@ -1,7 +1,9 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 
-module.exports = mkdirParentSync = (dir, mode) => {
+const mkdirParentSync = (dir, mode) => {
   if (!fs.existsSync(dir)) {
     const parent = path.dirname(dir);
     if (!fs.existsSync(parent)) {
@@ -10,3 +12,5 @@ module.exports = mkdirParentSync = (dir, mode) => {
     fs.mkdirSync(dir, mode);
   }
 };
+
+module.exports = mkdirParentSync;

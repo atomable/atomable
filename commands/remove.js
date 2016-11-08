@@ -1,3 +1,5 @@
+'use strict';
+
 const getBucketName = require('../tasks/remove/get-bucket-name');
 const emptyBucket = require('../tasks/remove/empty-bucket');
 const deleteStack = require('../tasks/remove/delete-stack');

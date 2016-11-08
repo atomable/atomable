@@ -1,9 +1,10 @@
+'use strict';
+
 const fs = require('fs');
 
 const log = require('../utils/log')('atomable');
 
 const Command = require('ember-cli/lib/models/command');
-const validProjectName = require('ember-cli/lib/utilities/valid-project-name');
 const SilentError = require('silent-error');
 
 
@@ -21,15 +22,13 @@ const command = Command.extend({
   ],
 
   run: function (commandOptions, rawArgs) {
-    const name = rawArgs.shift();
+    let name = rawArgs.shift();
 
     if (!name) {
       return Promise.reject(new SilentError(`The 'atomable ${this.name}' command requires a name argument to be specified. For more details, use 'atomable help'.`));
     }
 
-    if (!validProjectName(name)) {
-      return Promise.reject(new SilentError(`We currently do not support a name of '${name}'.`));
-    }
+    name = name.toLowerCase();
 
     if (!commandOptions.directory) {
       commandOptions.directory = name;

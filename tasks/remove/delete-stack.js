@@ -1,3 +1,5 @@
+'use strict';
+
 const aws = require('aws-sdk');
 
 module.exports = (log, stackName, region) => {

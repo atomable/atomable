@@ -1,3 +1,5 @@
+'use strict';
+
 const aws = require('aws-sdk');
 const Maybe = require('liftjs').Maybe;
 

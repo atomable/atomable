@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = () => {
   try {
     return require('./package.json').name;

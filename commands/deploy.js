@@ -1,3 +1,5 @@
+'use strict';
+
 const uuid = require('node-uuid');
 const Command = require('ember-cli/lib/models/command');
 
@@ -26,7 +28,7 @@ const command = Command.extend({
     const destination = `${source}/.atomable/deploy-${uuid.v1()}/`;
     const tmp = `${destination}/tmp/`;
     const bundle = `${destination}/bundle/`;
-    const success = commandOptions.dry 
+    const success = commandOptions.dry
       ? 'The package was succesfully bundeled but not deployed, it\'s here: ' + destination
       :`Successfully deployed to aws.`;
 

@@ -1,5 +1,6 @@
-const Command = require('ember-cli/lib/models/command');
+'use strict';
 
+const Command = require('ember-cli/lib/models/command');
 
 const log = require('../utils/log')('atomable');
 

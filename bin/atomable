@@ -1,5 +1,31 @@
 #!/usr/bin/env node
-// Provide a title to the process in `ps`
+
+/*
+The MIT License
+
+Copyright (c) 2016 Google, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+'use strict';
+
 process.title = 'atomable';
 
 const chalk = require('chalk');
@@ -23,14 +49,14 @@ const Leek = require('leek');
 resolve('atomable', { basedir: process.cwd() }, function (error, projectLocalCli) {
   var cli;
   if (error) {
-    // If there is an error, resolve could not find the ng-cli
+    // If there is an error, resolve could not find the atomable
     // library from a package.json. Instead, include it from a relative
     // path to this script file (which is likely a globally installed
-    // npm package). Most common cause for hitting this is `ng new`
+    // npm package). Most common cause for hitting this is ` atomable generate`
     cli = require('../lib/cli/');
   } else {
     // No error implies a projectLocalCli, which will load whatever
-    // version of ng-cli you have installed in a local package.json
+    // version of atomable you have installed in a local package.json
     cli = require(projectLocalCli);
   }
 
@@ -56,27 +82,3 @@ resolve('atomable', { basedir: process.cwd() }, function (error, projectLocalCli
     return new Leek(options);
   }
 });
-
-/*
-The MIT License
-
-Copyright (c) 2016 Google, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-*/

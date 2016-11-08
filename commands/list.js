@@ -1,3 +1,5 @@
+'use strict';
+
 const aws = require('aws-sdk');
 
 const Command = require('ember-cli/lib/models/command');

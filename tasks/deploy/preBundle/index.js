@@ -1,3 +1,5 @@
+'use strict';
+
 const copy = require('./copy-source');
 const installDependecies = require('./install-dependencies');
 const npmInstall = require('./npm-install');
