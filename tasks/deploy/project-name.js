@@ -5,6 +5,6 @@ module.exports = () => {
     return require('./package.json').name;
   }
   catch (err) {
-    return process.cwd().split(/[\\/]/).pop();
+    return process.cwd().split(/[\\/]/g).pop();
   }
 };

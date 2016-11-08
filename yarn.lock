@@ -3162,7 +3162,7 @@ semver@~5.0.1:
 
 "serverless@https://github.com/pre63/serverless":
   version "1.1.0"
-  resolved "https://github.com/pre63/serverless#df8c6d3f8c2d9603a30efb7428c00cc762e6548f"
+  resolved "https://github.com/pre63/serverless#35218d18976f2416df0ffa73381aeb01e8f2d256"
   dependencies:
     archiver "^1.1.0"
     async "^1.5.2"

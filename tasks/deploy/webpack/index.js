@@ -17,12 +17,12 @@ module.exports = (log, source, destination, minify) => {
 
     webpack(webpackConfig, (err, stats) => {
       if (stats.hasWarnings()) {
-        log.yellow(stats.toJson().warnings.toString().replace(/\.\/\.atomable\/[^\/]+\/tmp\//g, ''))
+        log.reset('webpack').yellow(stats.toJson().warnings.toString().replace(/\.\/\.atomable\/[^\/]+\/tmp\//g, ''))
       }
       if (stats.hasErrors()) {
         reject('\nWebpack failed:\n' + stats.toJson().errors.toString().replace(/\.\/\.atomable\/[^\/]+\/tmp\//g, ''))
       }
-      resolve()
+      resolve();
     });
   });
 };

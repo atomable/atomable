@@ -11,6 +11,7 @@ module.exports = {
       'help': require('../commands/help'),
       'list': require('../commands/list'),
       'remove': require('../commands/remove'),
+      'endpoints': require('../commands/endpoints'),
     };
   }
 };

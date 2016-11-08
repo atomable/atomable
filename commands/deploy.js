@@ -8,6 +8,8 @@ const log = require('../utils/log')('atomable');
 const preBundle = require('../tasks/deploy/preBundle');
 const webpack = require('../tasks/deploy/webpack');
 const serverlessDeploy = require('../tasks/deploy/serverless');
+const getEndpoints = require('../tasks/deploy/get-endpoints');
+const name = require('../tasks/deploy/project-name');
 
 const command = Command.extend({
   name: 'deploy',
@@ -28,14 +30,19 @@ const command = Command.extend({
     const destination = `${source}/.atomable/deploy-${uuid.v1()}/`;
     const tmp = `${destination}/tmp/`;
     const bundle = `${destination}/bundle/`;
-    const success = commandOptions.dry
-      ? 'The package was succesfully bundeled but not deployed, it\'s here: ' + destination
-      :`Successfully deployed to aws.`;
+    const stackName = name() + '-' + commandOptions.stage;
 
     return preBundle(log, commandOptions.stage, source, tmp)
-      .then(() => webpack(log, tmp, bundle, commandOptions.minify))
-      .then(() => !commandOptions.dry && serverlessDeploy(log, commandOptions.stage, tmp, bundle, commandOptions.region))
-      .then(() => log.green(success))
+      .then(() =>
+        webpack(log, tmp, bundle, commandOptions.minify))
+      .then(() =>
+        !commandOptions.dry
+          ? serverlessDeploy(log, commandOptions.stage, tmp, bundle, commandOptions.region)
+          : log('Deployment skipped. the bundle is here ' + destination))
+      .then(() =>
+        getEndpoints(log, stackName, commandOptions.region))
+      .then(() =>
+        log.green('Complete.'))
       .catch(log.red);
   }
 });
