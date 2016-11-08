@@ -30,11 +30,11 @@ module.exports = (tmp) => {
             };
           }).map(c =>
             fs.readFileSync(path.join(__dirname, 'templates/register.js'), 'utf8')
-              .replace(/\/\*\* func \*\//g, `require('./${c.handler.path.replace(/\\/g, '/')}.js')${c.handler.func}`)
+              .replace(/\/\*\* func \*\//g, 'require(\'./' +c.handler.path.replace(/\\/g, '/') +'.js\')'+c.handler.func)
               .replace(/\/\*\* conf \*\//g, JSON.stringify(c.conf)))
-          .join();
+          .join('');
 
-        fs.writeFileSync(tmp + `/handler.js`, fs.readFileSync(path.join(__dirname, 'templates/handler.js'), 'utf8')
+        fs.writeFileSync(tmp + '/handler.js', fs.readFileSync(path.join(__dirname, 'templates/handler.js'), 'utf8')
           .replace(/\/\*\* imports \*\//g, imports));
         resolve();
       });
