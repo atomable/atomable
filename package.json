@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "node test"
+    "test": "eslint . && node test"
   },
   "repository": "https://github.com/atomable/atomable.git",
   "bugs": {

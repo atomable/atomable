@@ -5,7 +5,3 @@ node_js:
   - "4"
   - "4.3"
   - "node"
-
-scripts:
-  - npm run lint
-  - npm test
