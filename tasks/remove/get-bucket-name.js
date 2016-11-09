@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; //eslint-disable-line
 
 const aws = require('aws-sdk');
 const Maybe = require('liftjs').Maybe;

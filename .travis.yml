@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "6"
+  - "5"
+  - "4"
+  - "4.3"
+  - "node"
+
+scripts:
+  - npm run lint
+  - npm test

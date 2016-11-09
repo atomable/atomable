@@ -8,7 +8,8 @@
     "alt": "bin/atomable"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node test"
   },
   "repository": "https://github.com/atomable/atomable.git",
   "bugs": {
