@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-'use strict';
+'use strict'; // eslint-disable-line
 
 const fs = require('fs');
 const path = require('path');
@@ -31,7 +31,7 @@ const stringUtils = require('ember-cli-string-utils');
 const lookupCommand = require('ember-cli/lib/cli/lookup-command');
 
 const commandsToIgnore = [
-  ''
+  '',
 ];
 
 const command = Command.extend({
@@ -41,46 +41,44 @@ const command = Command.extend({
 
   availableOptions: [],
 
-  run: function (commandOptions, rawArgs) {
-    let commandFiles = fs.readdirSync(__dirname)
-      // Remove files that are not JavaScript or Typescript
-      .filter(file => file.match(/\.(j|t)s$/) && !file.match(/\.d.ts$/))
-      .map(file => path.parse(file).name)
-      .map(file => file.toLowerCase());
+  run: (commandOptions, rawArgs) => {
+    let commandFiles =
+      fs.readdirSync(__dirname)
+        .filter(file => file.match(/\.(j|t)s$/) && !file.match(/\.d.ts$/))
+        .map(file => path.parse(file).name)
+        .map(file => file.toLowerCase());
 
-    commandFiles = commandFiles.filter(file => {
-      return commandsToIgnore.indexOf(file) < 0;
-    });
+    commandFiles = commandFiles.filter(file =>
+      commandsToIgnore.indexOf(file) < 0);
 
-    let commandMap = commandFiles.reduce((acc, curr) => {
-      let classifiedName = stringUtils.classify(curr);
-      let defaultImport = require(`./${curr}`);
+    const commandMap = commandFiles.reduce((acc, curr) => {
+      const classifiedName = stringUtils.classify(curr);
+      const defaultImport = require(`./${curr}`); // eslint-disable-line
 
-      acc[classifiedName] = defaultImport;
+      acc[classifiedName] = defaultImport; // eslint-disable-line
 
       return acc;
     }, {});
 
-    commandFiles.forEach(cmd => {
-      let Command = lookupCommand(commandMap, cmd);
+    commandFiles.forEach((cmd) => {
+      const LookupCommand = lookupCommand(commandMap, cmd);
 
-      let command = new Command({
+      const lookup = new LookupCommand({
         ui: this.ui,
         project: this.project,
         commands: this.commands,
-        tasks: this.tasks
+        tasks: this.tasks,
       });
 
       if (rawArgs.length > 0) {
         if (cmd === rawArgs[0]) {
-          this.ui.writeLine(command.printDetailedHelp(commandOptions));
+          this.ui.writeLine(lookup.printDetailedHelp(commandOptions));
         }
       } else {
-        this.ui.writeLine(command.printBasicHelp(commandOptions));
+        this.ui.writeLine(lookup.printBasicHelp(commandOptions));
       }
-
     });
-  }
+  },
 });
 
 command.overrideCore = true;

@@ -24,20 +24,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-'use strict';
+'use strict';  // eslint-disable-line
 
 process.title = 'atomable';
 
 const chalk = require('chalk');
 
-console.log(chalk.blue("                                    "));
-console.log(chalk.blue("       __                 __   __   "));
-console.log(chalk.blue(" ___ _/ /____  __ _ ___ _/ /  / /__ "));
-console.log(chalk.blue("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)"));
-console.log(chalk.blue("\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ "));
-console.log(chalk.blue("  Severless Microservice Framework"));
-console.log(chalk.blue("  atomable.io, 1.0.0-beta.10"));
-console.log(chalk.blue("                                    "));
+console.log(chalk.blue('                                    '));  // eslint-disable-line
+console.log(chalk.blue('       __                 __   __   '));  // eslint-disable-line
+console.log(chalk.blue(' ___ _/ /____  __ _ ___ _/ /  / /__ '));  // eslint-disable-line
+console.log(chalk.blue("/ _ `/ __/ _ \\/  ' / _ `/ _ \\/ / -_)"));  // eslint-disable-line
+console.log(chalk.blue('\\_,_/\\__/\\___/_/_/_\\_,_/_.__/_/\\__/ '));  // eslint-disable-line
+console.log(chalk.blue('  Severless Microservice Framework'));  // eslint-disable-line
+console.log(chalk.blue('  atomable.io, 1.0.0-beta.11'));  // eslint-disable-line
+console.log(chalk.blue('                                    '));  // eslint-disable-line
 
 
 const resolve = require('resolve');
@@ -46,39 +46,39 @@ const packageJson = require('../package.json');
 const Leek = require('leek');
 
 
-resolve('atomable', { basedir: process.cwd() }, function (error, projectLocalCli) {
-  var cli;
+resolve('atomable', { basedir: process.cwd() }, (error, projectLocalCli) => {
+  let cli;
   if (error) {
     // If there is an error, resolve could not find the atomable
     // library from a package.json. Instead, include it from a relative
     // path to this script file (which is likely a globally installed
     // npm package). Most common cause for hitting this is ` atomable generate`
-    cli = require('../lib/cli/');
+    cli = require('../lib/cli/');  // eslint-disable-line
   } else {
     // No error implies a projectLocalCli, which will load whatever
     // version of atomable you have installed in a local package.json
-    cli = require(projectLocalCli);
+    cli = require(projectLocalCli);  // eslint-disable-line
   }
 
   if ('default' in cli) {
-    cli = cli['default'];
+    cli = cli.default;
+  }
+
+  function CustomLeek(options) {
+    options.trackingCode = packageJson.trackingCode;  // eslint-disable-line
+    options.globalName = packageJson.name;  // eslint-disable-line
+    options.name = packageJson.name;  // eslint-disable-line
+    options.version = packageJson.version;  // eslint-disable-line
+    return new Leek(options);
   }
 
   cli({
     cliArgs: process.argv.slice(2),
     inputStream: process.stdin,
     outputStream: process.stdout,
-    Leek: CustomLeek
-  }).then(function (result) {
-    var exitCode = typeof result === 'object' ? result.exitCode : result;
+    Leek: CustomLeek,
+  }).then((result) => {
+    const exitCode = typeof result === 'object' ? result.exitCode : result;
     exit(exitCode);
   });
-
-  function CustomLeek(options) {
-    options.trackingCode = packageJson.trackingCode;
-    options.globalName = packageJson.name;
-    options.name = packageJson.name;
-    options.version = packageJson.version;
-    return new Leek(options);
-  }
 });

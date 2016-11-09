@@ -1,1 +1,1 @@
-module.exports = `envionnement: dev`;
+module.exports = 'envionnement: dev';

@@ -5,6 +5,5 @@ const runtime = require('atomable-runtime');
 /**
  * handler() handles aws lambda events
  */
-export const handler = (event, context, callback) => {
-  runtime.handle(event, context, callback);
-};
+export const handler = runtime.handle; //eslint-disable-line
+

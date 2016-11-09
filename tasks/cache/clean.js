@@ -1,4 +1,3 @@
-'use strict';
 const fs = require('fs');
 
 const deleteFolderRecursive = (dir) => {
@@ -6,7 +5,7 @@ const deleteFolderRecursive = (dir) => {
     fs.readdirSync(dir)
       .forEach((file) => {
         const current = `${dir}/${file}`;
-        fs.statSync(current).isDirectory()
+        return fs.statSync(current).isDirectory()
           ? deleteFolderRecursive(current)
           : fs.unlinkSync(current);
       });

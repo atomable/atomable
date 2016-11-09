@@ -1,22 +1,35 @@
-'use strict';
-
 const aws = require('aws-sdk');
 const Maybe = require('liftjs').Maybe;
 
-module.exports = (log, bucketName) => {
-  return new Promise((resolve, reject) => {
+module.exports = (log, bucketName) =>
+  new Promise((resolve) => {
     if (Maybe(bucketName)
-      .map(bucketName => {
+      .map((name) => {
         const s3 = new aws.S3();
 
-        listObjects(s3, [], { Bucket: bucketName }, objects => {
+        const listObjects = (proxy, objects, params, callback) => {
+          proxy.listObjectsV2(params, (err, data) => {
+            if (err) {
+              callback([]);
+            }
+            // TODO continuation token
+            const combined = objects.concat(data.Contents);
+            if (data.KeyCount > 999) {
+              listObjects(proxy, combined, params, callback);
+            } else {
+              callback(combined);
+            }
+          });
+        };
+
+        return listObjects(s3, [], { Bucket: name }, (objects) => {
           if (objects.length > 0) {
             s3.deleteObjects({
-              Bucket: bucketName,
+              Bucket: name,
               Delete: {
-                Objects: objects.map(o => { return { Key: o.Key }; })
-              }
-            }, function (err, data) {
+                Objects: objects.map(o => ({ Key: o.Key })),
+              },
+            }, () => {
               resolve();
             });
           } else {
@@ -27,19 +40,3 @@ module.exports = (log, bucketName) => {
       resolve();
     }
   });
-};
-
-const listObjects = (s3, objects, params, callback) => {
-  s3.listObjectsV2(params, (err, data) => {
-    if (err) {
-      callback([]);
-    }
-    //TODO continuation token
-    const combined = objects.concat(data.Contents);
-    if (data.KeyCount > 999) {
-      listObjects(s3, combined, params, callback);
-    } else {
-      callback(combined)
-    }
-  });
-};

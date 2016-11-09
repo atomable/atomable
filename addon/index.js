@@ -1,17 +1,15 @@
-'use strict';
+'use strict';  // eslint-disable-line
 
 module.exports = {
   name: 'atomable',
 
-  includedCommands: function () {
-    return {
-      'cache': require('../commands/cache'),
-      'deploy': require('../commands/deploy'),
-      'generate': require('../commands/generate'),
-      'help': require('../commands/help'),
-      'list': require('../commands/list'),
-      'remove': require('../commands/remove'),
-      'endpoints': require('../commands/endpoints'),
-    };
-  }
+  includedCommands: () => ({
+    cache: require('../commands/cache'), // eslint-disable-line
+    deploy: require('../commands/deploy'), // eslint-disable-line
+    generate: require('../commands/generate'), // eslint-disable-line
+    help: require('../commands/help'), // eslint-disable-line
+    list: require('../commands/list'), // eslint-disable-line
+    remove: require('../commands/remove'), // eslint-disable-line
+    endpoints: require('../commands/endpoints'), // eslint-disable-line
+  }),
 };

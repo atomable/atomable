@@ -1,37 +1,27 @@
-'use strict';
+'use strict';  // eslint-disable-line
 
 const fs = require('fs');
-const path = require('path');
-const uuid = require('node-uuid');
 const yaml = require('js-yaml');
-const chalk = require('chalk');
-
-const Maybe = require('liftjs').Maybe;
-
 const walker = require('./walker');
 const name = require('../project-name');
-
 const serverless = require('serverless');
 
-/**
- * () deploys the project to the stage
- */
-module.exports = (log, stage, tmp, bundle, region) => {
-  return walker(tmp)
-    .then(files => {
+module.exports = (log, stage, tmp, bundle, region) =>
+  walker(tmp)
+    .then((files) => {
       const serverlessConfig = {
         service: name(),
         provider: {
           name: 'aws',
           runtime: 'nodejs4.3',
-          stage: stage,
-          region: region,
-          cfLogs: true
+          stage,
+          region,
+          cfLogs: true,
         },
         functions: files
           .filter(f => /atomable.yml/g.test(f))
           .map(f => yaml.load(fs.readFileSync(f)))
-          .map(conf => {
+          .map((conf) => {
             const functions = {};
             functions[conf.name] = {
               handler: 'handler.handler',
@@ -39,15 +29,14 @@ module.exports = (log, stage, tmp, bundle, region) => {
                 {
                   http: {
                     path: conf.https.path,
-                    method: conf.https.method
-                  }
-                }
-              ]
+                    method: conf.https.method,
+                  },
+                },
+              ],
             };
             return functions;
-          }).reduce((a, b) => Object.assign(a, b), {})
+          }).reduce((a, b) => Object.assign(a, b), {}),
       };
-      fs.writeFileSync(bundle + `/serverless.yml`, yaml.dump(serverlessConfig));
+      fs.writeFileSync(`${bundle}/serverless.yml`, yaml.dump(serverlessConfig));
     }).then(() =>
       serverless(bundle, { region, stage }, 'deploy', log.dim));
-};

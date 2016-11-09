@@ -1,27 +1,23 @@
-'use strict';
-
+'use strict';  // eslint-disable-line
 const fs = require('fs');
-
 const log = require('../utils/log')('atomable');
-
 const Command = require('ember-cli/lib/models/command');
 const SilentError = require('silent-error');
 
-
 const command = Command.extend({
   name: 'generate',
-  description: `Generates a sample microservice`,
+  description: 'Generates a sample microservice',
   aliases: ['g'],
   works: 'insideProject',
 
   availableOptions: [
-    { name: 'directory', type: String, aliases: ['dir'] }
+    { name: 'directory', type: String, aliases: ['dir'] },
   ],
   anonymousOptions: [
-    '<name>'
+    '<name>',
   ],
 
-  run: function (commandOptions, rawArgs) {
+  run: (commandOptions, rawArgs) => {
     let name = rawArgs.shift();
 
     if (!name) {
@@ -29,10 +25,6 @@ const command = Command.extend({
     }
 
     name = name.toLowerCase();
-
-    if (!commandOptions.directory) {
-      commandOptions.directory = name;
-    }
 
     log.dim(`Generating ${name} microservice...`);
 
@@ -46,20 +38,22 @@ const command = Command.extend({
       }
     };
 
-    const destination = process.cwd() + `/${commandOptions.directory}`;
+    const destination = `${process.cwd()}/${commandOptions.directory || name}`;
     mkdir(destination);
-    writeFile(`${destination}/${name}.js`, (require(`../tasks/generate/templates/beretta`)).replace(/beretta/g, name));
-    writeFile(`${destination}/${name}.spec.js`, (require(`../tasks/generate/templates/beretta.spec.js`)).replace(/beretta/g, name));
-    writeFile(`${destination}/atomable.yml`, (require(`../tasks/generate/templates/atomable`)).replace(/beretta/g, name));
+    writeFile(`${destination}/${name}.js`, (require('../tasks/generate/templates/beretta')).replace(/beretta/g, name)); // eslint-disable-line
+    writeFile(`${destination}/${name}.spec.js`, (require('../tasks/generate/templates/beretta.spec.js')).replace(/beretta/g, name)); // eslint-disable-line
+    writeFile(`${destination}/atomable.yml`, (require('../tasks/generate/templates/atomable')).replace(/beretta/g, name)); // eslint-disable-line
 
     mkdir(`${destination}/env`);
-    writeFile(`${destination}/env/conf.yml`, require(`../tasks/generate/templates/conf`));
-    writeFile(`${destination}/env/conf-dev.yml`, require(`../tasks/generate/templates/conf`));
-    writeFile(`${destination}/env/conf-prod.yml`, (require(`../tasks/generate/templates/conf`)).replace(/dev/g, `prod`));
+    writeFile(`${destination}/env/conf.yml`, require('../tasks/generate/templates/conf')); // eslint-disable-line
+    writeFile(`${destination}/env/conf-dev.yml`, require('../tasks/generate/templates/conf')); // eslint-disable-line
+    writeFile(`${destination}/env/conf-prod.yml`, (require('../tasks/generate/templates/conf')).replace(/dev/g, 'prod')); // eslint-disable-line
 
     log.dim(`Successfully generated ${name} microservice in '${destination}'.`);
-  }
+
+    return Promise.resolve();
+  },
 });
 
 command.overrideCore = true;
-module.exports = command
+module.exports = command;

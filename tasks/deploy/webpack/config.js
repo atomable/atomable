@@ -1,18 +1,16 @@
-'use strict';
-
 const path = require('path');
 
 module.exports = (webpack, sourceDir, outDir, minify) => {
-  const eslint_loader = path.join(__dirname, '..', '..', '..', 'node_modules/eslint-loader');
-  const source_map_loader = path.join(__dirname, '..', '..', '..', 'node_modules/source-map-loader');
-  const babel_loader = path.join(__dirname, '..', '..', '..', 'node_modules/babel-loader');
+  const eslintLoader = path.join(__dirname, '..', '..', '..', 'node_modules/eslint-loader');
+  const sourceMapLoader = path.join(__dirname, '..', '..', '..', 'node_modules/source-map-loader');
+  const babelLoader = path.join(__dirname, '..', '..', '..', 'node_modules/babel-loader');
 
   const plugins = [
     new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.DedupePlugin(),
   ];
   if (minify) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin())
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
   }
 
   return {
@@ -25,29 +23,29 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
     target: 'node',
     module: {
       preLoaders: [
-        { test: /^.+\.(map|week-map)$/, loader: eslint_loader, exclude: /node_modules/ },
-        { test: /^.+\.(map|week-map)$/, loader: source_map_loader, exclude: /node_modules/ }
+        { test: /^.+\.(map|week-map)$/, loader: eslintLoader, exclude: /node_modules/ },
+        { test: /^.+\.(map|week-map)$/, loader: sourceMapLoader, exclude: /node_modules/ },
       ],
       loaders: [{
         test: /^.+\.(jsx?|esx?)$/,
-        exclude: '/(node_modules|bower_components|\.map)/',
-        loader: babel_loader,
+        exclude: '/(node_modules|bower_components|.map)/',
+        loader: babelLoader,
         query: {
           presets: [
             'latest',
-            'stage-0'
+            'stage-0',
           ],
           plugins: [
             ['transform-runtime', {
               helpers: false,
               polyfill: false,
-              regenerator: true
-            }]
-          ]
-        }
-      }]
+              regenerator: true,
+            }],
+          ],
+        },
+      }],
     },
-    plugins: plugins,
-    devtool: 'source-map'
+    plugins,
+    devtool: 'source-map',
   };
 };
