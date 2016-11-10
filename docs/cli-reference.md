@@ -23,9 +23,10 @@ The atomable Command Line Interface is a unified tool to manage your microservic
 ********************************************************************************
 
 ## cache
+Cleans the '.atomable' cache.
+
 _aliases: c_
 
-Cleans the '.atomable' cache.
 #### Usage
 ```
 atomable cache <options...>
@@ -37,9 +38,9 @@ atomable cache <options...>
 *******************************************************************************
 
 ## deploy
-_aliases: d_
-
 Deploys all the microservices that are in the current directory or child directory and created the https endpoint if configured.
+
+_aliases: d_
 #### Usage
 ```
 atomable deploy <options...>
@@ -57,25 +58,25 @@ atomable deploy <options...>
 *******************************************************************************
 
 ## endpoints
-_aliases: e_
-
 Lists the endpoints for the current project or directory name.
+
+_aliases: e_
 #### Usage
 ```
 atomable endpoints <options...>
 ```
 #### options
 -  --stage (String) (Default: dev)
-    -aliases: -s <value>
+    - aliases: -s <value>
 -  --region (String) (Default: us-east-1)
-    -aliases: -r <value>
+    - aliases: -r <value>
 
 *******************************************************************************
 
 ## generate
-_aliases: g_
-
 Generates a new microservice example with a configured https endpoint with the provided name.
+
+_aliases: g_
 #### Usage
 ```
 atomable generate <name> <options...>
@@ -87,9 +88,9 @@ atomable generate <name> <options...>
 *******************************************************************************
 
 ## help
-_aliases: h, --help, -h_
+Outputs the usage instructions for all commands or the provided command.
 
-Outputs the usage instructions for all commands or the provided command
+_aliases: h, --help, -h_
 #### Usage
 ```
 atomable help <command-name (Default: all)> <options...>
@@ -101,9 +102,9 @@ atomable help <command-name (Default: all)> <options...>
 ********************************************************************************
 
 ## list
-_aliases: l_
-
 Lists the CloudFormation stack that are not DELETE_COMPLETE.
+
+_aliases: l_
 #### Usage
 ```
 atomable list <options...>
@@ -115,9 +116,9 @@ atomable list <options...>
 *******************************************************************************
 
 ## remove
-_aliases: r_
-
 Removes the specified stack.
+
+_aliases: r_
 #### Usage
 ```
 atomable remove <stackName> <options...>
@@ -129,9 +130,9 @@ atomable remove <stackName> <options...>
 *******************************************************************************
 
 ## version
-_aliases: v, --version, -v_
+Outputs atomable version.
 
-outputs atomable version
+_aliases: v, --version, -v_
 #### Usage
 ```
 atomable version <options...>

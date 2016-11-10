@@ -21,7 +21,7 @@ npm install -g atomable
 yarn global add atomable
 ```
 
-## Dods
+## Docs
 [CLI Reference](docs/cli-reference.md)
 
 ## Contributing
