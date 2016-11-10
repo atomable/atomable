@@ -4,6 +4,8 @@
 
 # atomable - Build es-next microservices on AWS Lambda!
 
+[![Join the chat at https://gitter.im/atomable/atomable](https://badges.gitter.im/atomable/atomable.svg)](https://gitter.im/atomable/atomable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 atomable is a cli and a runtime for building serverless microservices on the cloud. As of yet it supports AWS Lambda and nodejs.
 
 ## Source code | fork | pull request | issues
