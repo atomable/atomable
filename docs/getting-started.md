@@ -32,4 +32,4 @@ Copy paste the endpoint url from the console and copy it in a browser and add a 
 <url>?firstName?<your-first-name>
 ```
 
-You should get a ``` hello <your-first-name>.
+You should get a ``` hello <your-first-name>.```
