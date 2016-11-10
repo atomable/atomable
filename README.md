@@ -14,11 +14,11 @@ https://github.com/atomable/atomable
 
 ### [npm](https://www.npmjs.com/package/atomable)
 ```
-npm install -g atomable-runtime
+npm install -g atomable
 ```
 ### [yarn](https://yarnpkg.com/)
 ```
-yarn global add atomable-runtime
+yarn global add atomable
 ```
 
 ## Usage
@@ -38,7 +38,8 @@ If you feel like contributing, one thing you have to know is we hate classes, th
 
 
 ## Links
-- [atomable.io](atomable.io)
+- [atomable.io](https://atomable.io)
+- [atomable runtime](https://github.com/atomable/runtime)
 - [npm](https://www.npmjs.com/package/atomable)
 - [travis](https://travis-ci.org/atomable)
 
