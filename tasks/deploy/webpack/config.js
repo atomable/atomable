@@ -46,6 +46,5 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
       }],
     },
     plugins,
-    devtool: 'source-map',
   };
 };

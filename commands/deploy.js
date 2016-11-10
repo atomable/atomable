@@ -1,6 +1,6 @@
 'use strict';  // eslint-disable-line
 const uuid = require('node-uuid');
-const Command = require('ember-cli/lib/models/command');
+const Command = require('../ember-cli/lib/models/command');
 const log = require('../utils/log')('atomable');
 const preBundle = require('../tasks/deploy/preBundle');
 const webpack = require('../tasks/deploy/webpack');

@@ -1,7 +1,7 @@
 'use strict';  // eslint-disable-line
 const fs = require('fs');
 const log = require('../utils/log')('atomable');
-const Command = require('ember-cli/lib/models/command');
+const Command = require('../ember-cli/lib/models/command');
 const SilentError = require('silent-error');
 
 const command = Command.extend({

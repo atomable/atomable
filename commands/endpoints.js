@@ -1,6 +1,6 @@
 'use strict';  // eslint-disable-line
 
-const Command = require('ember-cli/lib/models/command');
+const Command = require('../ember-cli/lib/models/command');
 const log = require('../utils/log')('atomable');
 const getEndpoints = require('../tasks/deploy/get-endpoints');
 const name = require('../tasks/deploy/project-name');

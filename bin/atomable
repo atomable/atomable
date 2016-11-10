@@ -53,7 +53,7 @@ resolve('atomable', { basedir: process.cwd() }, (error, projectLocalCli) => {
     // library from a package.json. Instead, include it from a relative
     // path to this script file (which is likely a globally installed
     // npm package). Most common cause for hitting this is ` atomable generate`
-    cli = require('../lib/cli/');  // eslint-disable-line
+    cli = require('../index');  // eslint-disable-line
   } else {
     // No error implies a projectLocalCli, which will load whatever
     // version of atomable you have installed in a local package.json
@@ -76,6 +76,7 @@ resolve('atomable', { basedir: process.cwd() }, (error, projectLocalCli) => {
     cliArgs: process.argv.slice(2),
     inputStream: process.stdin,
     outputStream: process.stdout,
+    errorStream: process.stderr,
     Leek: CustomLeek,
   }).then((result) => {
     const exitCode = typeof result === 'object' ? result.exitCode : result;

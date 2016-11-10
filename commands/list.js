@@ -1,6 +1,6 @@
 'use strict';  // eslint-disable-line
 const aws = require('aws-sdk');
-const Command = require('ember-cli/lib/models/command');
+const Command = require('../ember-cli/lib/models/command');
 const log = require('../utils/log')('atomable');
 
 const command = Command.extend({
