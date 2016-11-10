@@ -24,6 +24,8 @@ yarn global add atomable
 ## Docs
 [CLI Reference](docs/cli-reference.md)
 
+[Getting Started](docs/getting-started.md)
+
 ## Contributing
 
 1. Fork it!
