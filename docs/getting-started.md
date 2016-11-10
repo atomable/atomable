@@ -1,6 +1,6 @@
 # Getting Started
 > Beforehand you need to create an AWS account and configure the credentials.
-> aws configure: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-using-examples
+> This can be done using the AWS cli and `aws configure`: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-using-examples
 
 > Install node, npm and open a terminal
 
