@@ -1,11 +1,10 @@
 # Getting Started
-
-## Quick get started
-
 > Beforehand you need to create a aws accouunt and configure the credentials.
 > aws configure: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-using-examples
 
 > Install node, npm and open a terminal
+
+## Quick get started
 
 Install atomable via npm.
 ```
