@@ -26,7 +26,7 @@ Deploy the microservice on aws.
 atomable deploy
 ```
 
-Copy paste the endpoint url from the console and copy it in a browser and add a `firstName` query parameter at the endpoint.
+Copy paste the endpoint url from the console and copy it in a browser and add a `firstName` query parameter at the end.
 ```
 <url>?firstName=<your-first-name>
 ```
