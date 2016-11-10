@@ -4,41 +4,21 @@ The atomable Command Line Interface is a unified tool to manage your microservic
 ********************************************************************************
 
 ## Available Commands
-[cache]
-[deploy]
-[endpoints]
-[generate]
-[help]
-[list]
-[remove]
-[version]
+[cache](#cache)
 
-********************************************************************************
+[deploy](#deploy)
 
-## help
-_aliases: h, --help, -h_
+[endpoints](#endpoints)
 
-Outputs the usage instructions for all commands or the provided command
-#### Usage
-```
-atomable help <command-name (Default: all)> <options...>
-```
-#### options
-- --verbose (Boolean) (Default: false)
-    - aliases: -v
+[generate](#generate)
 
-********************************************************************************
+[help](#help)
 
-## version
-_aliases: v, --version, -v_
+[list](#list)
 
-outputs atomable version
-#### Usage
-```
-atomable version <options...>
-```
-#### options
-- --verbose (Boolean) (Default: false)
+[remove](#remove)
+
+[version](#version)
 
 ********************************************************************************
 
@@ -76,6 +56,22 @@ atomable deploy <options...>
 
 *******************************************************************************
 
+## endpoints
+_aliases: e_
+
+Lists the endpoints for the current project or directory name.
+#### Usage
+```
+atomable endpoints <options...>
+```
+#### options
+-  --stage (String) (Default: dev)
+    -aliases: -s <value>
+-  --region (String) (Default: us-east-1)
+    -aliases: -r <value>
+
+*******************************************************************************
+
 ## generate
 _aliases: g_
 
@@ -89,6 +85,20 @@ atomable generate <name> <options...>
     - aliases: -dir <value>
 
 *******************************************************************************
+
+## help
+_aliases: h, --help, -h_
+
+Outputs the usage instructions for all commands or the provided command
+#### Usage
+```
+atomable help <command-name (Default: all)> <options...>
+```
+#### options
+- --verbose (Boolean) (Default: false)
+    - aliases: -v
+
+********************************************************************************
 
 ## list
 _aliases: l_
@@ -118,18 +128,15 @@ atomable remove <stackName> <options...>
 
 *******************************************************************************
 
-## endpoints
-_aliases: e_
+## version
+_aliases: v, --version, -v_
 
-Lists the endpoints for the current project or directory name.
+outputs atomable version
 #### Usage
 ```
-atomable endpoints <options...>
+atomable version <options...>
 ```
 #### options
--  --stage (String) (Default: dev)
-    -aliases: -s <value>
--  --region (String) (Default: us-east-1)
-    -aliases: -r <value>
+- --verbose (Boolean) (Default: false)
 
-*******************************************************************************
+********************************************************************************
