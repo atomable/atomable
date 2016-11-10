@@ -1,17 +1,23 @@
 # CLI Reference
 The atomable Command Line Interface is a unified tool to manage your microservices.
 
+********************************************************************************
+
 ## Available Commands
-[help]
-[version]
 [cache]
 [deploy]
+[endpoints]
 [generate]
+[help]
 [list]
 [remove]
-[endpoints]
+[version]
 
-## help, aliases: h, --help, -h
+********************************************************************************
+
+## help
+_aliases: h, --help, -h_
+
 Outputs the usage instructions for all commands or the provided command
 #### Usage
 ```
@@ -19,9 +25,13 @@ atomable help <command-name (Default: all)> <options...>
 ```
 #### options
 - --verbose (Boolean) (Default: false)
-  aliases: -v
+    - aliases: -v
 
-## version, aliases: v, --version, -v
+********************************************************************************
+
+## version
+_aliases: v, --version, -v_
+
 outputs atomable version
 #### Usage
 ```
@@ -30,48 +40,96 @@ atomable version <options...>
 #### options
 - --verbose (Boolean) (Default: false)
 
-## cache, aliases: c
+********************************************************************************
+
+## cache
+_aliases: c_
+
 Cleans the '.atomable' cache.
 #### Usage
 ```
-cache cache <options...>
+atomable cache <options...>
 ```
 #### options
 - --clean (Boolean) (Default: false)
-    aliases: -c
+    - aliases: -c
 
+*******************************************************************************
+
+## deploy
+_aliases: d_
+
+Deploys all the microservices that are in the current directory or child directory and created the https endpoint if configured.
+#### Usage
+```
 atomable deploy <options...>
-  aliases: d
-  --stage (String) (Default: dev)
-    aliases: -s <value>
-  --region (String) (Default: us-east-1)
-    aliases: -r <value>
-  --minify (Boolean) (Default: true)
-    aliases: -m
-  --dry (Boolean) (Default: false)
-    aliases: -d
+```
+#### options
+-  --stage (String) (Default: dev)
+    - aliases: -s <value>
+-  --region (String) (Default: us-east-1)
+    - aliases: -r <value>
+-  --minify (Boolean) (Default: true)
+    -  aliases: -m
+-  --dry (Boolean) (Default: false)
+    -  aliases: -d
 
+*******************************************************************************
+
+## generate
+_aliases: g_
+
+Generates a new microservice example with a configured https endpoint with the provided name.
+#### Usage
+```
 atomable generate <name> <options...>
-  Generates a sample microservice
-  aliases: g
-  --directory (String)
-    aliases: -dir <value>
+```
+#### options
+-  --directory (String)
+    - aliases: -dir <value>
 
+*******************************************************************************
+
+## list
+_aliases: l_
+
+Lists the CloudFormation stack that are not DELETE_COMPLETE.
+#### Usage
+```
 atomable list <options...>
-  Lists the CloudFormation stack that are not DELETE_COMPLETE
-  aliases: l
-  --region (String) (Default: us-east-1)
-    aliases: -r <value>
+```
+#### options
+- --region (String) (Default: us-east-1)
+    - aliases: -r <value>
 
+*******************************************************************************
+
+## remove
+_aliases: r_
+
+Removes the specified stack.
+#### Usage
+```
 atomable remove <stackName> <options...>
-  Removed the specified stack.
-  aliases: r
-  --region (String) (Default: us-east-1)
-    aliases: -r <value>
+```
+#### options
+-  --region (String) (Default: us-east-1)
+    - aliases: -r <value>
 
+*******************************************************************************
+
+## endpoints
+_aliases: e_
+
+Lists the endpoints for the current project or directory name.
+#### Usage
+```
 atomable endpoints <options...>
-  aliases: e
-  --stage (String) (Default: dev)
-    aliases: -s <value>
-  --region (String) (Default: us-east-1)
-    aliases: -r <value>
+```
+#### options
+-  --stage (String) (Default: dev)
+    -aliases: -s <value>
+-  --region (String) (Default: us-east-1)
+    -aliases: -r <value>
+
+*******************************************************************************
