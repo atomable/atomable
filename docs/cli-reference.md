@@ -15,17 +15,17 @@ The atomable Command Line Interface is a unified tool to manage your microservic
 Outputs the usage instructions for all commands or the provided command
 #### Usage
 ```
-help <command-name (Default: all)> <options...>
+atomable help <command-name (Default: all)> <options...>
 ```
 #### options
 - --verbose (Boolean) (Default: false)
   aliases: -v
 
 ## version, aliases: v, --version, -v
-outputs ember-cli version
+outputs atomable version
 #### Usage
 ```
-help <command-name (Default: all)> <options...>
+atomable version <options...>
 ```
 #### options
 - --verbose (Boolean) (Default: false)
