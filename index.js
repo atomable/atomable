@@ -24,7 +24,6 @@ THE SOFTWARE.
 'use strict'; // eslint-disable-line
 
 const cli = require('./ember-cli/lib/cli');
-const UI = require('./ember-cli/lib/ui');
 const Watcher = require('./ember-cli/lib/models/watcher');
 const path = require('path');
 
