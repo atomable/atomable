@@ -9,7 +9,7 @@
 
 Install atomable via npm.
 ```
-npm install atomable -Getting
+npm install atomable -g
 ```
 
 Create a directory.
