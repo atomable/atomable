@@ -26,6 +26,8 @@ yarn global add atomable
 
 [Getting Started](docs/getting-started.md)
 
+[Configuring atomable](docs/configuring-atomable.md)
+
 ## Contributing
 
 1. Fork it!
