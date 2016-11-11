@@ -8,6 +8,8 @@ const name = require('../tasks/deploy/project-name');
 const command = Command.extend({
   name: 'endpoints',
 
+  description: 'Lists the endpoints for the current project or directory name.',
+
   aliases: ['e'],
 
   works: 'insideProject',

@@ -52,6 +52,7 @@ module.exports = Command.extend({
       this.ui.writeLine('Available commands in ' + process.title + ':');
       this.ui.writeLine('');
 
+
       Object.keys(this.commands).forEach(function (commandName) {
         this._printHelpForCommand(commandName, false, commandOptions);
       }, this);
@@ -59,9 +60,6 @@ module.exports = Command.extend({
       if (this.project.eachAddonCommand) {
         this.project.eachAddonCommand(function (addonName, commands) {
           this.commands = commands;
-
-          this.ui.writeLine('');
-          this.ui.writeLine('Available commands from ' + addonName + ':');
 
           Object.keys(this.commands).forEach(function (commandName) {
             this._printHelpForCommand(commandName, false, commandOptions);

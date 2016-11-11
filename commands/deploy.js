@@ -11,6 +11,8 @@ const name = require('../tasks/deploy/project-name');
 const command = Command.extend({
   name: 'deploy',
 
+  description: 'Deploys all the microservices that are in the current directory or child directory and created the https endpoint if configured.',
+
   aliases: ['d'],
 
   works: 'insideProject',

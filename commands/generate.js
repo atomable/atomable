@@ -6,8 +6,11 @@ const SilentError = require('silent-error');
 
 const command = Command.extend({
   name: 'generate',
-  description: 'Generates a sample microservice',
+
+  description: 'Generates a new microservice example with a configured https endpoint with the provided name.',
+
   aliases: ['g'],
+
   works: 'insideProject',
 
   availableOptions: [

@@ -39,47 +39,33 @@ console.log(chalk.blue('  Severless Microservice Framework'));  // eslint-disabl
 console.log(chalk.blue('  atomable.io, 1.0.0-beta.13'));  // eslint-disable-line
 console.log(chalk.blue('                                    '));  // eslint-disable-line
 
-
-const resolve = require('resolve');
 const exit = require('exit');
 const packageJson = require('../package.json');
 const Leek = require('leek');
 
 
-resolve('atomable', { basedir: process.cwd() }, (error, projectLocalCli) => {
-  let cli;
-  if (error) {
-    // If there is an error, resolve could not find the atomable
-    // library from a package.json. Instead, include it from a relative
-    // path to this script file (which is likely a globally installed
-    // npm package). Most common cause for hitting this is ` atomable generate`
-    cli = require('../index');  // eslint-disable-line
-  } else {
-    // No error implies a projectLocalCli, which will load whatever
-    // version of atomable you have installed in a local package.json
-    cli = require(projectLocalCli);  // eslint-disable-line
-  }
+let cli;
+cli = require('../index');  // eslint-disable-line
+if ('default' in cli) {
+  cli = cli.default;
+}
 
-  if ('default' in cli) {
-    cli = cli.default;
-  }
+function CustomLeek(options) {
+  options.trackingCode = packageJson.trackingCode;  // eslint-disable-line
+  options.globalName = packageJson.name;  // eslint-disable-line
+  options.name = packageJson.name;  // eslint-disable-line
+  options.version = packageJson.version;  // eslint-disable-line
+  return new Leek(options);
+}
 
-  function CustomLeek(options) {
-    options.trackingCode = packageJson.trackingCode;  // eslint-disable-line
-    options.globalName = packageJson.name;  // eslint-disable-line
-    options.name = packageJson.name;  // eslint-disable-line
-    options.version = packageJson.version;  // eslint-disable-line
-    return new Leek(options);
-  }
-
-  cli({
-    cliArgs: process.argv.slice(2),
-    inputStream: process.stdin,
-    outputStream: process.stdout,
-    errorStream: process.stderr,
-    Leek: CustomLeek,
-  }).then((result) => {
-    const exitCode = typeof result === 'object' ? result.exitCode : result;
-    exit(exitCode);
-  });
+cli({
+  cliArgs: process.argv.slice(2),
+  inputStream: process.stdin,
+  outputStream: process.stdout,
+  errorStream: process.stderr,
+  Leek: CustomLeek,
+}).then((result) => {
+  const exitCode = typeof result === 'object' ? result.exitCode : result;
+  exit(exitCode);
 });
+

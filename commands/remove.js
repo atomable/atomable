@@ -9,8 +9,11 @@ const SilentError = require('silent-error');
 
 const command = Command.extend({
   name: 'remove',
-  description: 'Removed the specified stack.',
-  aliases: ['r'],
+
+  description: 'Removes the specified stack.',
+
+  aliases: ['r', 'rm'],
+
   works: 'everywhere',
 
   availableOptions: [

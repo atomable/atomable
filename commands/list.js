@@ -5,8 +5,11 @@ const log = require('../utils/log')('atomable');
 
 const command = Command.extend({
   name: 'list',
+
   description: 'Lists the CloudFormation stack that are not DELETE_COMPLETE',
-  aliases: ['l'],
+
+  aliases: ['l', 'ls'],
+
   works: 'everywhere',
 
   availableOptions: [

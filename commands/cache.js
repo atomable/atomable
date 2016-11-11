@@ -5,8 +5,11 @@ const clear = require('../tasks/cache/clean');
 
 module.exports = Command.extend({
   name: 'cache',
+
   description: 'Cleans the \'.atomable\' cache.',
+
   aliases: ['c'],
+
   works: 'insideProject',
 
   availableOptions: [
