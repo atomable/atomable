@@ -64,7 +64,7 @@ export const search = (authorization, query) => {
 name: signup
 handler: signup
 https:
-  path: signup
+  path: signup.handler
   method: post
   parameters:
   - in: body
@@ -80,7 +80,7 @@ https:
 The code that will be executed would look like:
 
 ```javascript
-export const search = (username, password, email) => {
+export const handler = (username, password, email) => {
   // authorization will always contain the value of the authorization header and is guaranteed not to be undefined.
   // query will contain all the query parameters that were passed in the request (may be undefined or empty).
 
