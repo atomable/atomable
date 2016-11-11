@@ -104,7 +104,7 @@ atomable help <command-name (Default: all)> <options...>
 ## list
 Lists the CloudFormation stack that are not DELETE_COMPLETE.
 
-_aliases: l_
+_aliases: l, ls_
 #### Usage
 ```
 atomable list <options...>
@@ -118,7 +118,7 @@ atomable list <options...>
 ## remove
 Removes the specified stack.
 
-_aliases: r_
+_aliases: r, rm_
 #### Usage
 ```
 atomable remove <stackName> <options...>
