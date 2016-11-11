@@ -3,11 +3,11 @@
 [![Build Status](https://travis-ci.org/atomable/atomable.svg?branch=master)](https://travis-ci.org/atomable/atomable)
 [![Join the chat at https://gitter.im/atomable/atomable](https://badges.gitter.im/atomable/atomable.svg)](https://gitter.im/atomable/atomable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-# atomable - Docs
+# Docs
 
-## [CLI Reference](cli-reference.md)
-## [Getting Started](getting-started.md)
-## [Configuring atomable](configuring-atomable.md)
+### [CLI Reference](cli-reference.md)
+### [Getting Started](getting-started.md)
+### [Configuring atomable](configuring-atomable.md)
 
 ## Installation
 
