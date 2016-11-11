@@ -7,7 +7,8 @@
 
 atomable is a cli and a runtime for building serverless microservices on the cloud. As of yet it supports AWS Lambda and nodejs.
 
-## You can read all the documentation here : [https://github.com/atomable/atomable/docs](https://github.com/atomable/atomable/docs)
+## You can read all the documentation here
+[https://github.com/atomable/atomable/tree/master/docs](https://github.com/atomable/atomable/tree/master/docs)
 
 ## Contributing
 
