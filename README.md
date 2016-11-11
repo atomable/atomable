@@ -7,26 +7,7 @@
 
 atomable is a cli and a runtime for building serverless microservices on the cloud. As of yet it supports AWS Lambda and nodejs.
 
-## Source code | fork | pull request | issues
-https://github.com/atomable/atomable
-
-## Installation
-
-### [npm](https://www.npmjs.com/package/atomable)
-```
-npm install -g atomable
-```
-### [yarn](https://yarnpkg.com/)
-```
-yarn global add atomable
-```
-
-## Docs
-[CLI Reference](docs/cli-reference.md)
-
-[Getting Started](docs/getting-started.md)
-
-[Configuring atomable](docs/configuring-atomable.md)
+## You can read all the documentation here : [https://github.com/atomable/atomable/docs](https://github.com/atomable/atomable/docs)
 
 ## Contributing
 
@@ -35,6 +16,9 @@ yarn global add atomable
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request!
+
+### Source code | fork | pull request | issues
+https://github.com/atomable/atomable
 
 If you find issues with atomable, log them here in our [issues.](https://github.com/atomable/atomable/issues)
 
@@ -46,7 +30,3 @@ If you feel like contributing, one thing you have to know is we hate classes, th
 - [atomable runtime](https://github.com/atomable/runtime)
 - [npm](https://www.npmjs.com/package/atomable)
 - [travis](https://travis-ci.org/atomable)
-
-## License
-
-MIT
