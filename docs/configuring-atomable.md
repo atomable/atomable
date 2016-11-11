@@ -1,8 +1,10 @@
 # How to configure atomable ?
 
-When you generate a new endpoint with the cli, a configuration file is automatically created for you. You can, and should, modify it to suit your needs. To know what the config supports, refer to the structure and examples below.
+When you generate a new endpoint with the cli, a configuration file is automatically created for you. You can, and should, modify it to suit your needs.
 
-## What is the structure of an atomable yaml config file ?
+To know what the config supports, refer to the structure and examples below.
+
+## What is the structure of an atomable.yml config file ?
 
 ```yaml
 name: (String)          # Name of the microservice
@@ -20,13 +22,13 @@ https:                  # The trigger for the microservice is an http call
 
 The configuration file is to let our runtime know what you want from the original http request. Our runtime will extract what you want, check for its validity, then send it to your module only if everything is as you asked for.
 
-It is important to know that the order in which you declare your parameters is the order in which the runtime will send the parameters to your module.
+It is important to know that the order in which you declare your parameters is the order in which the runtime will send them to your module.
 
 ## Wildcard
 
-When you want to receive everything associated with a certain parameter type (query, body, headers), you can use the wildcard `'*'`.
+When you want to receive everything associated with a certain parameter type (`query`, `body`, `headers`), you can use the wildcard `'*'`.
 
-It is important to know that when using a wildcard, the value for `required` is ignored, and is always false. This means that you have no guarantee that something will be passed as an argument to your module.
+It is important to know that when using a wildcard, the value for `required` is ignored, and is always `false`. This means that you have no guarantee that something will be passed as an argument to your module.
 
 # Examples
 ## Example for an endpoint to search for a cat:
@@ -50,8 +52,9 @@ The code that will be executed would look like:
 
 ```javascript
 export const search = (authorization, query) => {
-  // authorization will always contain the value of the authorization header and is guaranteed not to be undefined, since it is required.
-  // query will contain all the query parameters that were passed in the request.
+  // authorization will always contain the value of the authorization header and is guaranteed not to be undefined.
+  // query will contain all the query parameters that were passed in the request (may be undefined or empty).
+  return { name: 'fluffykins' };
 };
 ```
 
@@ -73,4 +76,14 @@ https:
   - in: body
     name: email
     required: false # The email parameter of your microservice might be undefined.
+```
+The code that will be executed would look like:
+
+```javascript
+export const search = (username, password, email) => {
+  // authorization will always contain the value of the authorization header and is guaranteed not to be undefined.
+  // query will contain all the query parameters that were passed in the request (may be undefined or empty).
+
+  // if nothing is returned, an empty 200 OK will be sent.
+};
 ```
