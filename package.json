@@ -1,6 +1,6 @@
 {
   "name": "atomable",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Serverless Microservice Framework",
   "main": "index.js",
   "bin": {
@@ -49,6 +49,7 @@
     "ncp": "2.0.0",
     "node-modules-path": "^1.0.1",
     "node-uuid": "1.4.7",
+    "nopt": "^3.0.6",
     "npm-package-arg": "^4.2.0",
     "ora": "^0.3.0",
     "quick-temp": "^0.1.6",
