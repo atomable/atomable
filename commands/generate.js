@@ -15,6 +15,7 @@ const command = Command.extend({
 
   availableOptions: [
     { name: 'directory', type: String, aliases: ['dir'] },
+    { name: 'template', type: String, aliases: ['t'], default: '' },
   ],
   anonymousOptions: [
     '<name>',
@@ -41,16 +42,19 @@ const command = Command.extend({
       }
     };
 
+    const templatePath = `../tasks/generate/templates${commandOptions.template !== '' ? `-${commandOptions.template}` : ''}`;
+
     const destination = `${process.cwd()}/${commandOptions.directory || name}`;
+
     mkdir(destination);
-    writeFile(`${destination}/${name}.js`, (require('../tasks/generate/templates/beretta')).replace(/beretta/g, name)); // eslint-disable-line
-    writeFile(`${destination}/${name}.spec.js`, (require('../tasks/generate/templates/beretta.spec.js')).replace(/beretta/g, name)); // eslint-disable-line
-    writeFile(`${destination}/atomable.yml`, (require('../tasks/generate/templates/atomable')).replace(/beretta/g, name)); // eslint-disable-line
+    writeFile(`${destination}/${name}.js`, (require(templatePath + '/beretta')).replace(/beretta/g, name)); // eslint-disable-line
+    writeFile(`${destination}/${name}.spec.js`, (require(templatePath + '/beretta.spec.js')).replace(/beretta/g, name)); // eslint-disable-line
+    writeFile(`${destination}/atomable.yml`, (require(templatePath + '/atomable')).replace(/beretta/g, name)); // eslint-disable-line
 
     mkdir(`${destination}/env`);
-    writeFile(`${destination}/env/conf.yml`, require('../tasks/generate/templates/conf')); // eslint-disable-line
-    writeFile(`${destination}/env/conf-dev.yml`, require('../tasks/generate/templates/conf')); // eslint-disable-line
-    writeFile(`${destination}/env/conf-prod.yml`, (require('../tasks/generate/templates/conf')).replace(/dev/g, 'prod')); // eslint-disable-line
+    writeFile(`${destination}/env/conf.yml`, require(`${templatePath}/conf`)); // eslint-disable-line
+    writeFile(`${destination}/env/conf-dev.yml`, require(`${templatePath}/conf`)); // eslint-disable-line
+    writeFile(`${destination}/env/conf-prod.yml`, (require(templatePath + '/conf')).replace(/dev/g, 'prod')); // eslint-disable-line
 
     log.dim(`Successfully generated ${name} microservice in '${destination}'.`);
 

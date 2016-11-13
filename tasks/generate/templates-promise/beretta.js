@@ -4,5 +4,5 @@ module.exports =
  * based on the passed-in firstName
  */
 module.exports.beretta = (firstName) => {
-  return firstName ? 'hello ' + firstName : 'hello world';
+  return new Promise((resolve, reject) => resolve(firstName ? 'hello ' + firstName : 'hello world'));
 };`;

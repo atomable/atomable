@@ -15,30 +15,6 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
       libraryTarget: 'commonjs2',
     },
     target: 'node',
-    module: {
-      preLoaders: [
-        { test: /^.+\.(map|week-map)$/, loader: 'eslint-loader', exclude: /node_modules/ },
-        { test: /^.+\.(map|week-map)$/, loader: 'source-map-loader', exclude: /node_modules/ },
-      ],
-      loaders: [{
-        test: /^.+\.(jsx?|esx?)$/,
-        exclude: '/(node_modules|bower_components|.map)/',
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            'latest',
-            'stage-0',
-          ],
-          plugins: [
-            ['transform-runtime', {
-              helpers: false,
-              polyfill: false,
-              regenerator: true,
-            }],
-          ],
-        },
-      }],
-    },
     plugins,
   };
 };
