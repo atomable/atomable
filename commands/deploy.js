@@ -21,6 +21,7 @@ const command = Command.extend({
     { name: 'region', type: String, aliases: ['r'], default: 'us-east-1' },
     { name: 'minify', type: Boolean, aliases: ['m'], default: true },
     { name: 'dry', type: Boolean, aliases: ['d'], default: false },
+    { name: 'bundler', type: String, aliases: ['b'], default: 'webpack' },
   ],
 
   run: (commandOptions) => {
@@ -32,7 +33,7 @@ const command = Command.extend({
     const stackName = `${name}-${commandOptions.stage}`;
 
     return new Promise((done, fail) => {
-      resolve('../plugins/webpack-babel', { basedir: __dirname }, (err, res) => {
+      resolve(`../plugins/${commandOptions.bundler}`, { basedir: __dirname }, (err, res) => {
         if (err) {
           fail(err);
         }
