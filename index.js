@@ -24,19 +24,11 @@ THE SOFTWARE.
 'use strict'; // eslint-disable-line
 
 const cli = require('./ember-cli/lib/cli');
-const Watcher = require('./ember-cli/lib/models/watcher');
 const path = require('path');
 
 Error.stackTraceLimit = Infinity;
 
 module.exports = (options) => {
-  // patch Watcher to always default to node, not checking for Watchman
-  Watcher.detectWatcher = (ui, _options) => {
-    const options = _options || {}; // eslint-disable-line
-    options.watcher = 'node';
-    return Promise.resolve(options);
-  };
-
   options.cli = { // eslint-disable-line
     name: 'atomable',
     root: path.join(__dirname),

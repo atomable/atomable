@@ -3,7 +3,6 @@
 var Command = require('../models/command');
 var lookupCommand = require('../cli/lookup-command');
 var stringUtils = require('ember-cli-string-utils');
-var assign = require('lodash/assign');
 
 var RootCommand = require('../models/command');
 
@@ -75,7 +74,7 @@ module.exports = Command.extend({
 
       if (this.project.eachAddonCommand) {
         this.project.eachAddonCommand(function (addonName, commands) {
-          assign(this.commands, commands);
+          Object.assign(this.commands, commands);
         }.bind(this));
       }
 

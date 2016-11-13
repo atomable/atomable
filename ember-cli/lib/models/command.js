@@ -13,7 +13,6 @@ var _ = require('ember-cli-lodash-subset');
 var EOL = require('os').EOL;
 var CoreObject = require('core-object');
 var logger = require('heimdalljs-logger')('ember-cli:command');
-var WatchDetector = require('../models/watch-detector');
 var SilentError = require('silent-error');
 var execSync = require('child_process').execSync;
 var fs = require('fs');
@@ -221,25 +220,7 @@ var Command = CoreObject.extend({
         }
       }
 
-      var detector = new WatchDetector({
-        ui: this.ui,
-        childProcess: { execSync: execSync },
-        fs: fs,
-        watchmanSupportsPlatform: /^win/.test(process.platform),
-        cache: cache,
-        root: this.project.root
-      });
-
-      var options = commandOptions.options;
-
-      if (this.hasOption('watcher')) {
-        // do stuff to try and provide a good experience when it comes to file watching
-        var watchPreference = detector.findBestWatcherOption(options);
-        this.project._watchmanInfo = watchPreference.watchmanInfo;
-        options.watcher = watchPreference.watcher;
-      }
-
-      resolve(this.run(options, commandOptions.args));
+      resolve(this.run(commandOptions.options, commandOptions.args));
     }.bind(this));
   },
 
