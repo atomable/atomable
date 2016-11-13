@@ -131,7 +131,7 @@ CLI.prototype.run = function (environment) {
           return result;
         }).then((exitCode) => {
           loggerTesting.info(`cli: command run complete. exitCode: ${exitCode}`);
-          // TODO: fix this
+          //  fix this
           // Possibly this issue: https://github.com/joyent/node/issues/8329
           // Wait to resolve promise when running on windows.
           // This ensures that stdout is flushed so acceptance tests get full output

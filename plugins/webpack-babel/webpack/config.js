@@ -1,10 +1,4 @@
-const path = require('path');
-
 module.exports = (webpack, sourceDir, outDir, minify) => {
-  const eslintLoader = path.join(__dirname, '..', '..', '..', 'node_modules/eslint-loader');
-  const sourceMapLoader = path.join(__dirname, '..', '..', '..', 'node_modules/source-map-loader');
-  const babelLoader = path.join(__dirname, '..', '..', '..', 'node_modules/babel-loader');
-
   const plugins = [
     new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
     new webpack.optimize.DedupePlugin(),
@@ -23,13 +17,13 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
     target: 'node',
     module: {
       preLoaders: [
-        { test: /^.+\.(map|week-map)$/, loader: eslintLoader, exclude: /node_modules/ },
-        { test: /^.+\.(map|week-map)$/, loader: sourceMapLoader, exclude: /node_modules/ },
+        { test: /^.+\.(map|week-map)$/, loader: 'eslint-loader', exclude: /node_modules/ },
+        { test: /^.+\.(map|week-map)$/, loader: 'source-map-loader', exclude: /node_modules/ },
       ],
       loaders: [{
         test: /^.+\.(jsx?|esx?)$/,
         exclude: '/(node_modules|bower_components|.map)/',
-        loader: babelLoader,
+        loader: 'babel-loader',
         query: {
           presets: [
             'latest',

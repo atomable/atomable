@@ -62,7 +62,7 @@ module.exports = function (options) {
 
   configureLogger(process.env);
 
-  // TODO: one UI (lib/models/project.js also has one for now...)
+  //  one UI (lib/models/project.js also has one for now...)
   var ui = new UI({
     inputStream: options.inputStream,
     outputStream: options.outputStream,

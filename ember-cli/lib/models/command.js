@@ -253,7 +253,7 @@ var Command = CoreObject.extend({
     duplicateOptions = _.filter(this.availableOptions, { 'name': key });
 
     if (duplicateOptions.length > 1) {
-      // TODO: warn on duplicates and overwriting
+      //  warn on duplicates and overwriting
       mergedAliases = [];
 
       _.map(duplicateOptions, 'aliases').map(function (alias) {

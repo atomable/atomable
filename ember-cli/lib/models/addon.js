@@ -289,7 +289,7 @@ var Addon = CoreObject.extend({
     if (!this.project) {
       this._warn('Addon: `' + this.name + '` is missing addon.project, this may be the result of an addon forgetting to invoke `super` in its init.');
     }
-    // TODO: fix law of demeter `_watchmanInfo.canNestRoots` is obviously a poor idea
+    //  fix law of demeter `_watchmanInfo.canNestRoots` is obviously a poor idea
     if ((this.project && this.project._watchmanInfo.canNestRoots) ||
         this.isDevelopingAddon()) {
       var WatchedDir = require('broccoli-source').WatchedDir;

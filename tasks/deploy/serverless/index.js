@@ -3,14 +3,13 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
 const walker = require('./walker');
-const name = require('../project-name');
 const serverless = require('serverless');
 
-module.exports = (log, stage, tmp, bundle, region) =>
-  walker(tmp)
+module.exports = (log, projectName, stage, source, bundle, region) =>
+  walker(source)
     .then((files) => {
       const serverlessConfig = {
-        service: name(),
+        service: projectName,
         provider: {
           name: 'aws',
           runtime: 'nodejs4.3',

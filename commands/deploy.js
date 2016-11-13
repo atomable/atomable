@@ -2,11 +2,10 @@
 const uuid = require('node-uuid');
 const Command = require('../ember-cli/lib/models/command');
 const log = require('../utils/log')('atomable');
-const preBundle = require('../tasks/deploy/preBundle');
-const webpack = require('../tasks/deploy/webpack');
 const serverlessDeploy = require('../tasks/deploy/serverless');
 const getEndpoints = require('../tasks/deploy/get-endpoints');
-const name = require('../tasks/deploy/project-name');
+const projectName = require('../tasks/deploy/project-name');
+const resolve = require('resolve');
 
 const command = Command.extend({
   name: 'deploy',
@@ -29,16 +28,22 @@ const command = Command.extend({
     const destination = `${source}/.atomable/deploy-${uuid.v1()}/`;
     const tmp = `${destination}/tmp/`;
     const bundle = `${destination}/bundle/`;
-    const stackName = `${name()}-${commandOptions.stage}`;
+    const name = projectName();
+    const stackName = `${name}-${commandOptions.stage}`;
 
-    return preBundle(log, commandOptions.stage, source, tmp)
-      .then(() =>
-        webpack(log, tmp, bundle, commandOptions.minify))
+    return new Promise((done, fail) => {
+      resolve('../plugins/webpack-babel', { basedir: __dirname }, (err, res) => {
+        if (err) {
+          fail(err);
+        }
+        const plugin = require(res); // eslint-disable-line
+        done(plugin(log, name, commandOptions.stage, source, tmp, bundle, commandOptions.minify));
+      });
+    })
       .then(() => (!commandOptions.dry
-        ? serverlessDeploy(log, commandOptions.stage, tmp, bundle, commandOptions.region)
-        : log(`Deployment skipped. the bundle is here ${destination}`)))
-      .then(() =>
-        getEndpoints(log, stackName, commandOptions.region))
+        ? serverlessDeploy(log, name, commandOptions.stage, source, bundle, commandOptions.region)
+        : log.dim(`Deployment skipped. the bundle is here ${destination}`)))
+      .then(() => (!commandOptions.dry && getEndpoints(log, stackName, commandOptions.region)))
       .then(() =>
         log.green('Complete.'))
       .catch(log.red);

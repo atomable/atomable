@@ -631,7 +631,7 @@ function ensureUI(_ui) {
   var ui = _ui;
 
   if (!ui) {
-    // TODO: one UI (lib/cli/index.js also has one for now...)
+    //  one UI (lib/cli/index.js also has one for now...)
     var UI = require('../ui');
     ui = new UI({
       inputStream: process.stdin,

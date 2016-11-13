@@ -6,9 +6,9 @@ const yaml = require('js-yaml');
 /**
  * () copies source files recursively to destination omiting js and es
  */
-module.exports = tmp =>
+module.exports = (source, tmp) =>
   new Promise(resolve =>
-    walker(tmp)
+    walker(source)
       .then((files) => {
         const imports = files
           .filter(f => /atomable.yml/g.test(f))
@@ -23,7 +23,7 @@ module.exports = tmp =>
             },
           })).map(c =>
             fs.readFileSync(path.join(__dirname, 'templates/register.js'), 'utf8')
-              .replace(/\/\*\* func \*\//g, `require('./${c.handler.path.replace(/\\/g, '/')}.js')${c.handler.func}`)
+              .replace(/\/\*\* func \*\//g, `require('../../../${c.handler.path.replace(/\\/g, '/')}.js')${c.handler.func}`)
               .replace(/\/\*\* conf \*\//g, JSON.stringify(c.conf)))
           .join('');
 
