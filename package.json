@@ -32,8 +32,6 @@
     "ember-cli-lodash-subset": "^1.0.11",
     "ember-cli-preprocess-registry": "^3.0.0",
     "ember-cli-string-utils": "^1.0.0",
-    "eslint": "3.10.0",
-    "eslint-loader": "1.6.1",
     "exists-sync": "^0.0.4",
     "exit": "0.1.2",
     "find-up": "^2.0.0",
@@ -47,13 +45,11 @@
     "js-yaml": "3.7.0",
     "leek": "0.0.24",
     "liftjs": "^1.2.0",
-    "ncp": "2.0.0",
     "node-modules-path": "^1.0.1",
     "node-uuid": "1.4.7",
     "nopt": "^3.0.6",
     "npm-package-arg": "^4.2.0",
     "ora": "^0.3.0",
-    "quick-temp": "^0.1.6",
     "resolve": "1.1.7",
     "rsvp": "^3.3.3",
     "serverless": "https://github.com/pre63/serverless",
@@ -90,8 +86,10 @@
     "atomable.io"
   ],
   "devDependencies": {
+    "eslint": "3.10.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.1.0",
+    "eslint-plugin-jsx-a11y": "^3.0.1",
     "eslint-plugin-react": "^6.6.0"
   }
 }
