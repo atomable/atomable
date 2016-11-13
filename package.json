@@ -1,6 +1,6 @@
 {
   "name": "atomable",
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.18",
   "description": "Serverless Microservice Framework",
   "main": "index.js",
   "bin": {
