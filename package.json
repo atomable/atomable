@@ -4,8 +4,9 @@
   "description": "Serverless Microservice Framework",
   "main": "index.js",
   "bin": {
-    "atomable": "bin/atomable",
-    "alt": "bin/atomable"
+    "atomable": "bin/atomable.js",
+    "ato": "bin/atomable.js",
+    "at": "bin/atomable.js"
   },
   "scripts": {
     "lint": "eslint .",
