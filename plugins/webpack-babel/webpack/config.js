@@ -6,8 +6,8 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
   if (minify) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
       compressor: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }));
   }
 

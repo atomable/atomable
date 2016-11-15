@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; // eslint-disable-line
 
 const fs = require('fs');
 const installDependencies = require('./install-dependencies');

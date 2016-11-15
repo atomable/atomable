@@ -6,5 +6,3 @@ module.exports =
     preBundle(log, stage, source, tmp)
       .then(() =>
         webpack(log, tmp.replace(/\\+/g, '/'), bundle.replace(/\\+/g, '/'), minify));
-
-

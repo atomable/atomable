@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 module.exports = (webpack, sourceDir, outDir, minify) => {
   const plugins = [
     new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
@@ -8,8 +6,8 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
   if (minify) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
       compressor: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }));
   }
 
