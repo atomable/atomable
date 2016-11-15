@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = (webpack, sourceDir, outDir, minify) => {
   const plugins = [
     new webpack.IgnorePlugin(/^.+\.(map|week-map)$/),
@@ -26,20 +28,11 @@ module.exports = (webpack, sourceDir, outDir, minify) => {
       ],
       loaders: [{
         test: /^.+\.(jsx?|esx?)$/,
-        exclude: '/node_modules/',
-        loader: 'babel-loader',
+        exclude: /node_modules/,
+        loader: 'traceur-loader',
         query: {
-          presets: [
-            'latest',
-            'stage-0',
-          ],
-          plugins: [
-            ['transform-runtime', {
-              helpers: false,
-              polyfill: false,
-              regenerator: true,
-            }],
-          ],
+          experimental: true,
+          runtime: true,
         },
       }],
     },

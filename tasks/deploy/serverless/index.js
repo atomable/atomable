@@ -29,6 +29,7 @@ module.exports = (log, projectName, stage, source, bundle, region) =>
                   http: {
                     path: conf.https.path,
                     method: conf.https.method,
+                    cors: conf.https.cors ? false : true
                   },
                 },
               ],

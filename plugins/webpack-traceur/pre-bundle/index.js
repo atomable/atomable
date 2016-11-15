@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const installDependecies = require('./install-dependencies');
+const installDependencies = require('./install-dependencies');
 const buildHandler = require('./build-handler');
 const mkdirParentSync = require('./mkdir-parent-sync');
 
@@ -21,6 +21,6 @@ module.exports = (log, stage, source, tmp) => {
     fs.writeFileSync(packageFile, packageContents, 'utf8');
   }
 
-  return installDependecies(tmp)
+  return installDependencies()
     .then(() => buildHandler(source, tmp));
 };
