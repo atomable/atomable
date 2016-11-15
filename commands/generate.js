@@ -38,7 +38,7 @@ const command = Command.extend({
 
     const mkdir = (dir) => {
       if (!fs.existsSync(dir)) {
-        fs.mkdir(dir);
+        fs.mkdirSync(dir);
       }
     };
 
