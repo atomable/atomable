@@ -5,9 +5,9 @@
 
 # Docs
 
-### [CLI Reference](cli-reference.md)
-### [Getting Started](getting-started.md)
-### [Configuring atomable](configuring-atomable.md)
+### [CLI Reference](/docs/cli-reference.md)
+### [Getting Started](/docs/getting-started.md)
+### [Configuring atomable](/docs/configuring-atomable.md)
 
 ## Installation
 
