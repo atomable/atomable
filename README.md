@@ -6,7 +6,7 @@
 [![bitHound Dependencies](https://www.bithound.io/github/atomable/atomable/badges/dependencies.svg)](https://www.bithound.io/github/atomable/atomable/master/dependencies/npm)
 [![bitHound Overall Score](https://www.bithound.io/github/atomable/atomable/badges/score.svg)](https://www.bithound.io/github/atomable/atomable)
 
-#### Build es-next microservices on AWS Lambda!
+### Build es-next microservices on AWS Lambda!
 
 # What is Atomable?
 atomable is an es-next to cloud microservice framework. It can use either babel or traceur to make your latest code ready for deployment to AWS Lambda.
