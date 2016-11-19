@@ -2,20 +2,22 @@
 
 const log = require('../utils/log')('atomable');
 const Command = require('../ember-cli/lib/models/command');
+const server = require('../tasks/serve/http-server');
 
 const command = Command.extend({
   name: 'serve',
 
-  description: 'Runs your atomable project locally.',
+  description: 'Serves your atomable project locally.',
 
-  aliases: ['s'],
+  aliases: ['s', 'watch', 'w'],
 
   works: 'everywhere',
 
-  run: (commandOptions, rawArgs) => {
-    log.green('ok!');
-    return 'ok';
-  },
+  availableOptions: [
+    { name: 'port', type: Number, default: 3000, aliases: ['p'] },
+  ],
+
+  run: commandOptions => server(log, commandOptions.port),
 });
 
 command.overrideCore = true;

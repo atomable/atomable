@@ -20,7 +20,7 @@
   "author": "atomable",
   "license": "MIT",
   "dependencies": {
-    "atomable-runtime": "^1.0.0-alpha",
+    "atomable-runtime": "^1.0.0-alpha.7",
     "aws-sdk": "2.7.0",
     "broccoli-concat": "^3.0.5",
     "broccoli-es6modules": "^1.2.3",
